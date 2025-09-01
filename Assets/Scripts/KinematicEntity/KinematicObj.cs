@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -46,36 +46,66 @@ public class KinematicObj : MonoBehaviour
                 velocity += Physics2D.gravity * gravityModifier * Time.fixedDeltaTime;
             }
 
-            PerformMovement(velocity * Time.fixedDeltaTime);
-            
+            // Calculate Movement
+            var deltaPos = velocity * Time.deltaTime;
+            var moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
+            var move = moveAlongGround * deltaPos.x;
+
+            PerformMovement(move, false);
+
+            move = Vector2.up * deltaPos.y;
+
+            PerformMovement(move, true);
+
+
         }
     }
     private bool isSlide = false;
-    protected virtual void PerformMovement(Vector2 dir)
+
+
+    public virtual void PerformMovement(Vector2 dir, bool yMovement)
     {
-        var distance = dir.magnitude; if (distance > minMoveDistance)
+        var distance = dir.magnitude;
+        if (distance > minMoveDistance)
         {
-            var cnt = body.Cast(dir, contactFilter, hitBuffer, distance + shellRadius); if (cnt == 0) { isGround = false; }
-            if (cnt == 0) isSlide = false;
+            // Check hit buffer
+            var cnt = body.Cast(dir, contactFilter, hitBuffer, distance + shellRadius);
+            if(cnt == 0)
+            {
+                isGround = false;
+                isSlide = false;
+            }
             for (int i = 0; i < cnt; i++)
-            { 
-                // Trigger ≈∏¿‘ ƒ›∂Û¿Ã¥ı π´Ω√
-                if (hitBuffer[i].collider.isTrigger) continue; 
-                var currentNormal = hitBuffer[i].normal; 
-                // ªÁº±ø° √Êµπ Ω√
-                if (currentNormal.y < minGroundY)
+            {
+                if (hitBuffer[i].collider.isTrigger)
+                {
+                    continue;
+                }
+
+                var currentNormal = hitBuffer[i].normal;
+                // Check Bottom hit
+                if (currentNormal.y > minGroundY)
+                {
+                    isGround = true;
+                    if (yMovement)
+                    {
+                        velocity.y = 0f;
+                        groundNormal = currentNormal;
+                    }
+                }
+                else
                 {
                     if (!isSlide) { Debug.Log("New Slide"); }
                     isSlide = true;
                     isGround = false;
 
-                    // ∞ÊªÁ∏È πÊ«‚ ∞ËªÍ
+                    // Í≤ΩÏÇ¨Î©¥ Î∞©Ìñ• Í≥ÑÏÇ∞
                     Vector2 g = Physics2D.gravity.normalized;
                     Vector2 slideDir = g - Vector2.Dot(g, currentNormal) * currentNormal;
                     if (slideDir.sqrMagnitude < minMagnitudeSlideDir) slideDir = g;
                     slideDir.Normalize();
 
-                    // ±‚¡∏ º”µµ ≈ıøµ + ¡ﬂ∑¬ ∞°º” √ﬂ∞°
+                    // Í∏∞Ï°¥ ÏÜçÎèÑ Ìà¨ÏòÅ + Ï§ëÎ†• Í∞ÄÏÜç Ï∂îÍ∞Ä
                     float speedAlongSlide = Vector2.Dot(velocity, slideDir);
                     Vector2 velocityAlongSlide = slideDir * speedAlongSlide;
                     Vector2 gravityAlongSlide = Vector2.Dot(Physics2D.gravity * gravityModifier, slideDir) * slideDir;
@@ -89,31 +119,93 @@ public class KinematicObj : MonoBehaviour
                         Debug.Log($"{slideDir} is SlideDir");
                     }
                 }
-                // ∆Ú∏È ¿ßø° √Êµπ Ω√
-                else 
+                // Check Head hit
+                if (currentNormal.y < -0.5f)
                 {
-                    isSlide = false;
-                    Debug.Log("∆Ú¡ˆ");
-                    if (!isGround)
-                    {
-                        isGround = true; 
-                        velocity.x = 0; 
-                        dir.x = 0; 
-                    }
-                    velocity.y = 0; 
-                    dir.y = 0;
-                    currentNormal = currentNormal.normalized;
-                    groundNormal = Vector2.Lerp(groundNormal, currentNormal, 0.5f); 
-                    break; 
+                    velocity.y = Mathf.Min(velocity.y, 0);
                 }
 
-                var modifiedDistance = Mathf.Max(hitBuffer[i].distance - shellRadius, 0); 
+
+                var modifiedDistance = hitBuffer[i].distance - shellRadius;
+                distance = modifiedDistance < distance ? modifiedDistance : distance;
             }
-            var moveDistance = dir.normalized * distance; 
-            body.MovePosition(body.position + moveDistance); 
+            var moveDistance = dir.normalized * distance;
+            body.position += moveDistance;
         }
     }
-    
+
+
+    /*
+        protected virtual void PerformMovement(Vector2 dir, bool yMovement)
+        {
+            var distance = dir.magnitude; if (distance > minMoveDistance)
+            {
+                var cnt = body.Cast(dir, contactFilter, hitBuffer, distance + shellRadius); 
+                if (cnt == 0) { 
+                    isGround = false;
+                    isSlide = false;
+                }
+                for (int i = 0; i < cnt; i++)
+                { 
+                    // Trigger ÌÉÄÏûÖ ÏΩúÎùºÏù¥Îçî Î¨¥Ïãú
+                    if (hitBuffer[i].collider.isTrigger) continue; 
+                    var currentNormal = hitBuffer[i].normal;
+                    // ÏÇ¨ÏÑ†Ïóê Ï∂©Îèå Ïãú
+
+                    if (yMovement)
+                    {
+                        if (currentNormal.y < minGroundY)
+                        {
+                            if (!isSlide) { Debug.Log("New Slide"); }
+                            isSlide = true;
+                            isGround = false;
+
+                            // Í≤ΩÏÇ¨Î©¥ Î∞©Ìñ• Í≥ÑÏÇ∞
+                            Vector2 g = Physics2D.gravity.normalized;
+                            Vector2 slideDir = g - Vector2.Dot(g, currentNormal) * currentNormal;
+                            if (slideDir.sqrMagnitude < minMagnitudeSlideDir) slideDir = g;
+                            slideDir.Normalize();
+
+                            // Í∏∞Ï°¥ ÏÜçÎèÑ Ìà¨ÏòÅ + Ï§ëÎ†• Í∞ÄÏÜç Ï∂îÍ∞Ä
+                            float speedAlongSlide = Vector2.Dot(velocity, slideDir);
+                            Vector2 velocityAlongSlide = slideDir * speedAlongSlide;
+                            Vector2 gravityAlongSlide = Vector2.Dot(Physics2D.gravity * gravityModifier, slideDir) * slideDir;
+
+                            velocity = velocityAlongSlide + gravityAlongSlide * Time.fixedDeltaTime;
+
+                            dir = velocity * Time.fixedDeltaTime;
+
+                            if (dir.y > 0)
+                            {
+                                Debug.Log($"{slideDir} is SlideDir");
+                            }
+                        }
+                        // ÌèâÎ©¥ ÏúÑÏóê Ï∂©Îèå Ïãú
+                        else
+                        {
+                            isSlide = false;
+                            Debug.Log("ÌèâÏßÄ");
+                            if (!isGround)
+                            {
+                                isGround = true;
+                                velocity.x = 0;
+                                dir.x = 0;
+                            }
+                            velocity.y = 0;
+                            dir.y = 0;
+                            currentNormal = currentNormal.normalized;
+                            groundNormal = Vector2.Lerp(groundNormal, currentNormal, 0.5f);
+                            break;
+                        }
+                    }
+
+                    var modifiedDistance = Mathf.Max(hitBuffer[i].distance - shellRadius, 0); 
+                }
+                var moveDistance = dir.normalized * distance; 
+                body.MovePosition(body.position + moveDistance); 
+            }
+        }
+        */
 
     private void Update()
     {
