@@ -43,9 +43,20 @@ public class KinematicObj : MonoBehaviour
     {
         if (body != null)
         {
-            if (!isGround)
+            if (gravityModifier > 0f)
             {
-                velocity += Physics2D.gravity * gravityModifier * Time.fixedDeltaTime;
+                if (velocity.y < 0)
+                {
+                    velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+                }
+                else
+                {
+                    velocity += Physics2D.gravity * Time.deltaTime;
+                }
+            }
+            else
+            {
+                velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
             }
 
             // Add External Force
@@ -167,4 +178,19 @@ public class KinematicObj : MonoBehaviour
         }
     }
 
+    public void InputHandler(Vector2 inputVec)
+    {
+        if (isGround)
+        {
+            velocity.x = inputVec.x;
+        }
+    }
+
+    public void Jump(float jumpForce)
+    {
+        if (isGround)
+        {
+            velocity.y += jumpForce;
+        }
+    }
 }
