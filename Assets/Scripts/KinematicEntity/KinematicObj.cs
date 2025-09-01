@@ -19,6 +19,8 @@ public class KinematicObj : MonoBehaviour
     private bool isGround = false;
 
     [SerializeField] protected Vector2 velocity;
+
+    private Vector2 additionalVelocty;
     private Vector2 groundNormal = Vector2.up;
 
     [SerializeField] private float minGroundY = 0.995f;
@@ -46,6 +48,9 @@ public class KinematicObj : MonoBehaviour
                 velocity += Physics2D.gravity * gravityModifier * Time.fixedDeltaTime;
             }
 
+            // Add External Force
+            velocity += additionalVelocty;
+
             // Calculate Movement
             var deltaPos = velocity * Time.deltaTime;
             var moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
@@ -57,6 +62,12 @@ public class KinematicObj : MonoBehaviour
 
             PerformMovement(move, true);
 
+
+            // Reset External Force
+            velocity -= additionalVelocty;
+
+            // Decay External Force
+            DecayAdditionalVelocity();
 
         }
     }
@@ -134,78 +145,27 @@ public class KinematicObj : MonoBehaviour
         }
     }
 
+    public void AddForce(Vector2 force)
+    {
+        additionalVelocty += force;
+    }
 
-    /*
-        protected virtual void PerformMovement(Vector2 dir, bool yMovement)
+    private void DecayAdditionalVelocity()
+    {
+        additionalVelocty.x *= (1 - 0.1f);
+        if (additionalVelocty.y > 0)
         {
-            var distance = dir.magnitude; if (distance > minMoveDistance)
-            {
-                var cnt = body.Cast(dir, contactFilter, hitBuffer, distance + shellRadius); 
-                if (cnt == 0) { 
-                    isGround = false;
-                    isSlide = false;
-                }
-                for (int i = 0; i < cnt; i++)
-                { 
-                    // Trigger 타입 콜라이더 무시
-                    if (hitBuffer[i].collider.isTrigger) continue; 
-                    var currentNormal = hitBuffer[i].normal;
-                    // 사선에 충돌 시
-
-                    if (yMovement)
-                    {
-                        if (currentNormal.y < minGroundY)
-                        {
-                            if (!isSlide) { Debug.Log("New Slide"); }
-                            isSlide = true;
-                            isGround = false;
-
-                            // 경사면 방향 계산
-                            Vector2 g = Physics2D.gravity.normalized;
-                            Vector2 slideDir = g - Vector2.Dot(g, currentNormal) * currentNormal;
-                            if (slideDir.sqrMagnitude < minMagnitudeSlideDir) slideDir = g;
-                            slideDir.Normalize();
-
-                            // 기존 속도 투영 + 중력 가속 추가
-                            float speedAlongSlide = Vector2.Dot(velocity, slideDir);
-                            Vector2 velocityAlongSlide = slideDir * speedAlongSlide;
-                            Vector2 gravityAlongSlide = Vector2.Dot(Physics2D.gravity * gravityModifier, slideDir) * slideDir;
-
-                            velocity = velocityAlongSlide + gravityAlongSlide * Time.fixedDeltaTime;
-
-                            dir = velocity * Time.fixedDeltaTime;
-
-                            if (dir.y > 0)
-                            {
-                                Debug.Log($"{slideDir} is SlideDir");
-                            }
-                        }
-                        // 평면 위에 충돌 시
-                        else
-                        {
-                            isSlide = false;
-                            Debug.Log("평지");
-                            if (!isGround)
-                            {
-                                isGround = true;
-                                velocity.x = 0;
-                                dir.x = 0;
-                            }
-                            velocity.y = 0;
-                            dir.y = 0;
-                            currentNormal = currentNormal.normalized;
-                            groundNormal = Vector2.Lerp(groundNormal, currentNormal, 0.5f);
-                            break;
-                        }
-                    }
-
-                    var modifiedDistance = Mathf.Max(hitBuffer[i].distance - shellRadius, 0); 
-                }
-                var moveDistance = dir.normalized * distance; 
-                body.MovePosition(body.position + moveDistance); 
-            }
+            additionalVelocty += gravityModifier * Physics2D.gravity * Time.deltaTime;
         }
-        */
+        else
+        {
+            additionalVelocty.y = 0f;
+        }
+        if (additionalVelocty.magnitude <= 0.01f)
+        {
+            additionalVelocty = Vector2.zero;
+        }
+    }
 
     private void Update()
     {
