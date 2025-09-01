@@ -167,16 +167,4 @@ public class KinematicObj : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (isGround) velocity = Vector2.zero;
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            if (isGround) velocity.x = -5f;
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            if (isGround) velocity.x = 5f;
-        }
-    }
 }
