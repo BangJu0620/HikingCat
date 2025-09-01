@@ -16,7 +16,7 @@ public class KinematicObj : MonoBehaviour
     [SerializeField] protected const float minMoveDistance = 0.001f;
     [SerializeField] protected const float shellRadius = 0.05f;
 
-    private bool isGround = false;
+    public bool isGround { get; private set; } = false;
 
     [SerializeField] protected Vector2 velocity;
 

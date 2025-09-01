@@ -670,9 +670,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   physicsModel: {fileID: 927619278}
   statusModel: {fileID: 927619283}
-  curMovementInput: {x: 0, y: 0}
   isJumpCharge: 0
+  isJumpChargeKeyInput: 0
+  jumpChargeTime: 0
   maxChargeTime: 1.2
+  accelTime: 0.2
+  deAccelTime: 0.1
+  curMovementInput: {x: 0, y: 0}
 --- !u!114 &927619283
 MonoBehaviour:
   m_ObjectHideFlags: 0
