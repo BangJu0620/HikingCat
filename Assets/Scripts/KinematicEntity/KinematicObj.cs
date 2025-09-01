@@ -37,6 +37,7 @@ public class KinematicObj : MonoBehaviour
 
         body.isKinematic = true; 
         contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
+        contactFilter.layerMask = contactFilter.layerMask & ~LayerMask.GetMask("Structure");
         contactFilter.useLayerMask = true;
         contactFilter.useTriggers = false;
     }
