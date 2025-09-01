@@ -10,7 +10,25 @@ public class StatusModel : MonoBehaviour
     public float Speed => baseSpeed;
 
     [SerializeField]
-    private float baseJump = 2.0f;
+    private float baseJump = 6.3f;
+    [SerializeField]
+    private float middleJump = 8.9f;
+    [SerializeField]
+    private float maxJumpForce = 10.8f;
 
-    public float JumpForce => baseJump;
+    public float GetJumpForce(float chargeRange)
+    {
+        if(chargeRange < 0.33f)
+        {
+            return baseJump;
+        }
+
+        if(chargeRange < 0.66f)
+        {
+            return middleJump;
+        }
+
+        return maxJumpForce;
+    }
+
 }

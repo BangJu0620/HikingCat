@@ -671,6 +671,8 @@ MonoBehaviour:
   physicsModel: {fileID: 927619278}
   statusModel: {fileID: 927619283}
   curMovementInput: {x: 0, y: 0}
+  isJumpCharge: 0
+  maxChargeTime: 1.2
 --- !u!114 &927619283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,7 +686,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 3
-  baseJump: 2
+  baseJump: 6.9
+  middleJump: 8.9
+  maxJumpForce: 10.8
 --- !u!1 &971544197
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,13 +840,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971544197}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.31467533, w: 0.9491994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.9, y: -1.84, z: 0}
   m_LocalScale: {x: 9.780312, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 36.682}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1209753692
 GameObject:
   m_ObjectHideFlags: 0

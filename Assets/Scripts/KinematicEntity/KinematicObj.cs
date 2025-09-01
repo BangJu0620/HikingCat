@@ -190,6 +190,7 @@ public class KinematicObj : MonoBehaviour
     {
         if (isGround)
         {
+            Debug.Log(jumpForce);
             velocity.y += jumpForce;
         }
     }
