@@ -25,6 +25,8 @@ public class KinematicObj : MonoBehaviour
 
     [SerializeField] private float minGroundY = 0.995f;
     [SerializeField] private float minMagnitudeSlideDir = 0.0001f;
+    private bool isJump = false;
+
     protected virtual void Awake()
     {
         body = GetComponent<Rigidbody2D>();
@@ -109,6 +111,7 @@ public class KinematicObj : MonoBehaviour
                 if (currentNormal.y > minGroundY)
                 {
                     isGround = true;
+                    isJump = false;
                     if (yMovement)
                     {
                         velocity.y = 0f;
@@ -120,6 +123,7 @@ public class KinematicObj : MonoBehaviour
                     if (!isSlide) { Debug.Log("New Slide"); }
                     isSlide = true;
                     isGround = false;
+                    isJump = false;
 
                     // 경사면 방향 계산
                     Vector2 g = Physics2D.gravity.normalized;
@@ -180,7 +184,7 @@ public class KinematicObj : MonoBehaviour
 
     public void InputHandler(Vector2 inputVec)
     {
-        if (isGround)
+        if (isGround || isJump)
         {
             velocity.x = inputVec.x;
         }
@@ -190,7 +194,7 @@ public class KinematicObj : MonoBehaviour
     {
         if (isGround)
         {
-            Debug.Log(jumpForce);
+            isJump = true;
             velocity.y += jumpForce;
         }
     }
