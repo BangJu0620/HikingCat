@@ -191,12 +191,12 @@ public class KinematicObj : MonoBehaviour
         }
     }
 
-    public void Jump(float jumpForce)
+    public void Jump(float jumpForce, bool isForce = false)
     {
-        if (isGround)
+        if (isGround || isForce)
         {
             isJump = true;
-            velocity.y += jumpForce;
+            velocity.y = jumpForce;
         }
     }
 }
