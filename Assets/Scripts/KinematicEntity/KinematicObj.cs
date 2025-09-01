@@ -155,7 +155,7 @@ public class KinematicObj : MonoBehaviour
         additionalVelocty.x *= (1 - 0.1f);
         if (additionalVelocty.y > 0)
         {
-            additionalVelocty += gravityModifier * Physics2D.gravity * Time.deltaTime;
+            additionalVelocty += gravityModifier * Physics2D.gravity * Time.fixedDeltaTime;
         }
         else
         {
