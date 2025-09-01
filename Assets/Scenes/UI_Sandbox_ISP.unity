@@ -291,6 +291,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 650016095172556081, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1068854067753571408, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -371,17 +375,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1180997301403491335, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278806488169288773, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3574661276308516700, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
       propertyPath: m_Name
       value: UIRoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4180604118298864122, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120604685944083421, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6072158621105695917, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7906498727168811764, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8136901872402992588, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
       propertyPath: m_TargetGraphic
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543910768322696544, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
