@@ -6,22 +6,21 @@ public class Door : MonoBehaviour
 {
     [SerializeField] float distance;
     [SerializeField] float speed;
-    [SerializeField] bool isVertical;
-    public IEnumerator OpenDoor()
+
+    public IEnumerator OpenDoor(int direction = 1, bool isHorizontal = false)   // 
     {
         Vector3 targetPos = transform.position;
-        if (isVertical)
+        if (isHorizontal)
         {
-            targetPos.x += distance;
+            targetPos.x += distance * direction;
         }
         else
         {
-            targetPos.y += distance;
+            targetPos.y += distance * direction;
         }
 
         while ((targetPos - transform.position).sqrMagnitude > distance)
         {
-            Debug.Log(transform.position);
             transform.position = Vector2.Lerp(transform.position, targetPos, speed * Time.deltaTime);
             yield return null;
         }

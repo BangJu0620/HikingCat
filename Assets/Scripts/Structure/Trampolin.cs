@@ -27,6 +27,8 @@ public class Trampolin : MonoBehaviour
             {
                 // 플레이어한테 점프 시키기
                 kineObj.AddForce(Vector2.up * jumpPower);
+
+                Debug.Log("Jump");
             }
             isUpPos = false;
         }

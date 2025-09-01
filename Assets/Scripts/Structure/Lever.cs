@@ -5,16 +5,20 @@ using UnityEngine.UI;
 
 public class Lever : MonoBehaviour
 {
-    [SerializeField] GameObject doorObj;
+    [SerializeField] GameObject rightUpDoorObj;
+    [SerializeField] GameObject leftDownDoorObj;
+    [SerializeField] bool isHorizontal;
 
-    Door door;
+    Door rightUpDoor;
+    Door leftDownDoor;
 
     bool isOpened = false;
     bool canInteract = false;
 
     private void Awake()
     {
-        door = doorObj.GetComponent<Door>();
+        rightUpDoor = rightUpDoorObj.GetComponent<Door>();
+        leftDownDoor = leftDownDoorObj.GetComponent<Door>();
     }
 
     private void Update()
@@ -23,8 +27,7 @@ public class Lever : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                StartCoroutine(door.OpenDoor());
-                isOpened = true;
+                InteractLever();
             }
         }
     }
@@ -45,5 +48,14 @@ public class Lever : MonoBehaviour
         {
             canInteract = false;
         }
+    }
+
+    void InteractLever()
+    {
+        // 사운드 재생
+
+        StartCoroutine(rightUpDoor.OpenDoor(1, isHorizontal));
+        StartCoroutine(leftDownDoor.OpenDoor(-1, isHorizontal));
+        isOpened = true;
     }
 }
