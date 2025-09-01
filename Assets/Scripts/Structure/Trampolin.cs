@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Trampolin : MonoBehaviour
 {
-    // 플레이어 필요한가
-    // Player player;
-
     [SerializeField] float jumpPower;
 
     bool isUpPos = false;
