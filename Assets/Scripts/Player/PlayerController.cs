@@ -9,18 +9,45 @@ public class PlayerController : MonoBehaviour
     [Header("Inspector 연결 오브젝트")]
     [SerializeField] private KinematicObj physicsModel;
     [SerializeField] private StatusModel statusModel;
-    public Vector2 curMovementInput;
 
     [Header("점프")]
     public bool isJumpCharge = false;
     private float jumpChargeTime = 0f;
     [SerializeField] private float maxChargeTime = 1.2f;
 
+    [Header("이동")]
+    [SerializeField] private float accelTime = 0.2f;
+    [SerializeField] private float deAccelTime = 0.2f;
+
+    public Vector2 curMovementInput;
+    private Vector2 curVelocity;
+    private Vector2 targetVelocity;
+
+    private float accelRate;
+    private float deAccelRate;
+
     private bool isMoving = false;
+
+    private void Awake()
+    {
+        accelRate = 1f / accelTime;
+        deAccelRate = 1f / deAccelTime;
+    }
 
     private void Update()
     {
-        physicsModel.InputHandler(curMovementInput * statusModel.Speed);
+        targetVelocity = curMovementInput * statusModel.Speed;
+
+        if (isMoving)
+        {
+            curVelocity = Vector2.Lerp(curVelocity, targetVelocity, accelRate * Time.deltaTime);
+        }
+        else
+        {
+            curVelocity = Vector2.Lerp(curVelocity, Vector2.zero, deAccelRate * Time.deltaTime);
+        }
+
+        physicsModel.InputHandler(curVelocity);
     }
 
     public void OnMove(InputAction.CallbackContext context)

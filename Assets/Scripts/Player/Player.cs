@@ -5,4 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerController controller;
+    [SerializeField] private KinematicObj body;
+
 }
