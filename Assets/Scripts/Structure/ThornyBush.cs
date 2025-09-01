@@ -24,7 +24,7 @@ public class ThornyBush : MonoBehaviour
         Debug.Log($"{collision.gameObject.name} exit");
         if (collision.gameObject.CompareTag("Player"))
         {
-            StopCoroutine(Damage());
+            StopAllCoroutines();
         }
     }
 
