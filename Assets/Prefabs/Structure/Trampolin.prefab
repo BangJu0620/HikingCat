@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpPower: 10
+  isUpPos: 0
 --- !u!50 &78579230195669846
 Rigidbody2D:
   serializedVersion: 4

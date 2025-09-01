@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [Header("¿Ãµø")]
     [SerializeField] private float accelTime = 0.2f;
     [SerializeField] private float deAccelTime = 0.1f;
+    private bool isMovekeyInput = false;
 
     public Vector2 curMovementInput;
     private Vector2 curVelocity;
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private float accelRate;
     private float deAccelRate;
 
-    private bool isMoving = false;
+    [SerializeField] private bool isMoving = false;
 
     private void Awake()
     {
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
             curVelocity = Vector2.Lerp(curVelocity, Vector2.zero, deAccelRate * Time.deltaTime);
         }
 
-        if(Mathf.Abs(curVelocity.x) <= 0.05f)
+        if(Mathf.Abs(curVelocity.x) <= 0.05f && !isMovekeyInput)
         {
             isMoving = false;
             curVelocity.x = 0;
@@ -72,10 +73,12 @@ public class PlayerController : MonoBehaviour
             if (context.phase == InputActionPhase.Performed)
             {
                 isMoving = true;
+                isMovekeyInput = true;
                 curMovementInput = context.ReadValue<Vector2>();
             }
             else if (context.phase == InputActionPhase.Canceled)
             {
+                isMovekeyInput = false;
                 curMovementInput = Vector2.zero;
             }
         }

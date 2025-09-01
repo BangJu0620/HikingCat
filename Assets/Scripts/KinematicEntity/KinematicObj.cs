@@ -111,6 +111,10 @@ public class KinematicObj : MonoBehaviour
                 // Check Bottom hit
                 if (currentNormal.y > minGroundY)
                 {
+                    if (!isGround)
+                    {
+                        velocity.x = 0;
+                    }
                     isGround = true;
                     isJump = false;
                     if (yMovement)
@@ -191,12 +195,12 @@ public class KinematicObj : MonoBehaviour
         }
     }
 
-    public void Jump(float jumpForce)
+    public void Jump(float jumpForce, bool isForce = false)
     {
-        if (isGround)
+        if (isGround || isForce)
         {
             isJump = true;
-            velocity.y += jumpForce;
+            velocity.y = jumpForce;
         }
     }
 }
