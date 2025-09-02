@@ -9,6 +9,8 @@ public class Lever : MonoBehaviour
     [SerializeField] GameObject rightUpDoorObj;
     [SerializeField] GameObject leftDownDoorObj;
     [SerializeField] bool isHorizontal;
+    [SerializeField] float distance;
+    [SerializeField] float speed;
 
     Door rightUpDoor;
     Door leftDownDoor;
@@ -16,7 +18,7 @@ public class Lever : MonoBehaviour
     bool isOpened = false;
 
     [Header("레버")]
-    [SerializeField] float triggerSize;
+    [SerializeField] float colliderSize;
 
     Collider2D collider;
     
@@ -63,8 +65,8 @@ public class Lever : MonoBehaviour
     {
         // 사운드 재생
 
-        StartCoroutine(rightUpDoor.OpenDoor(1, isHorizontal));
-        StartCoroutine(leftDownDoor.OpenDoor(-1, isHorizontal));
+        StartCoroutine(rightUpDoor.OpenDoor(distance, speed, 1, isHorizontal));
+        StartCoroutine(leftDownDoor.OpenDoor(distance, speed, -1, isHorizontal));
         isOpened = true;
     }
 
@@ -73,12 +75,12 @@ public class Lever : MonoBehaviour
         if(collider is BoxCollider2D)
         {
             BoxCollider2D box = collider as BoxCollider2D;
-            box.size = Vector2.one * triggerSize;
+            box.size = Vector2.one * colliderSize;
         }
         else if(collider is CircleCollider2D)
         {
             CircleCollider2D circle = collider as CircleCollider2D;
-            circle.radius = triggerSize;
+            circle.radius = colliderSize;
         }
         else
         {

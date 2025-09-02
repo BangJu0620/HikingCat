@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] float distance;
-    [SerializeField] float speed;
-
-    public IEnumerator OpenDoor(int direction = 1, bool isHorizontal = false)   // 
+    public IEnumerator OpenDoor(float distance, float speed, int direction = 1, bool isHorizontal = false)   // 
     {
         Vector3 targetPos = transform.position;
         if (isHorizontal)
