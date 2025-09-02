@@ -16,7 +16,7 @@ public class KinematicObj : MonoBehaviour
     [SerializeField] protected const float minMoveDistance = 0.001f;
     [SerializeField] protected const float shellRadius = 0.05f;
 
-    private bool isGround = false;
+    public bool isGround { get; private set; } = false;
 
     [SerializeField] protected Vector2 velocity;
 
@@ -25,6 +25,8 @@ public class KinematicObj : MonoBehaviour
 
     [SerializeField] private float minGroundY = 0.995f;
     [SerializeField] private float minMagnitudeSlideDir = 0.0001f;
+    private bool isJump = false;
+
     protected virtual void Awake()
     {
         body = GetComponent<Rigidbody2D>();
@@ -35,6 +37,7 @@ public class KinematicObj : MonoBehaviour
 
         body.isKinematic = true; 
         contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
+        contactFilter.layerMask = contactFilter.layerMask & ~LayerMask.GetMask("Structure");
         contactFilter.useLayerMask = true;
         contactFilter.useTriggers = false;
     }
@@ -43,9 +46,20 @@ public class KinematicObj : MonoBehaviour
     {
         if (body != null)
         {
-            if (!isGround)
+            if (gravityModifier > 0f)
             {
-                velocity += Physics2D.gravity * gravityModifier * Time.fixedDeltaTime;
+                if (velocity.y < 0)
+                {
+                    velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+                }
+                else
+                {
+                    velocity += Physics2D.gravity * Time.deltaTime;
+                }
+            }
+            else
+            {
+                velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
             }
 
             // Add External Force
@@ -97,7 +111,12 @@ public class KinematicObj : MonoBehaviour
                 // Check Bottom hit
                 if (currentNormal.y > minGroundY)
                 {
+                    if (!isGround)
+                    {
+                        velocity.x = 0;
+                    }
                     isGround = true;
+                    isJump = false;
                     if (yMovement)
                     {
                         velocity.y = 0f;
@@ -109,6 +128,7 @@ public class KinematicObj : MonoBehaviour
                     if (!isSlide) { Debug.Log("New Slide"); }
                     isSlide = true;
                     isGround = false;
+                    isJump = false;
 
                     // 경사면 방향 계산
                     Vector2 g = Physics2D.gravity.normalized;
@@ -167,16 +187,20 @@ public class KinematicObj : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void InputHandler(Vector2 inputVec)
     {
-        if (isGround) velocity = Vector2.zero;
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (isGround || isJump)
         {
-            if (isGround) velocity.x = -5f;
+            velocity.x = inputVec.x;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+    }
+
+    public void Jump(float jumpForce, bool isForce = false)
+    {
+        if (isGround || isForce)
         {
-            if (isGround) velocity.x = 5f;
+            isJump = true;
+            velocity.y = jumpForce;
         }
     }
 }
