@@ -1,39 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public static SceneLoader Instance { get; private set; }
+    private static SceneLoader instance;
+    public static SceneLoader Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<SceneLoader>();
+                if (instance == null)
+                {
+                    var go = new GameObject("SceneLoader");
+                    instance = go.AddComponent<SceneLoader>();
+                    DontDestroyOnLoad(go);
+                }
+            }
+            return instance;
+        }
+    }
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
         }
-
-        Instance = this;
+        
+        instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
-    public void LoadTitleScene()
-    {
-        Debug.Log("Title Scene.");
-        //SceneManager.LoadScene("TitleScene_Test");
-    }
-
-    public void LoadGameScene()
-    {
-        Debug.Log("Game Scene.");
-        //SceneManager.LoadScene("GameScene_Test");
-    }
-
-    public void QuitGame()
-    {
-        Debug.Log("Quit Game.");
-        Application.Quit();
-    }
+    public void LoadTitleScene() => SceneManager.LoadScene("TitleScene_Test");
+    public void LoadGameScene() =>  SceneManager.LoadScene("GameScene_Test");
+    public void QuitGame() => Application.Quit();
 }
