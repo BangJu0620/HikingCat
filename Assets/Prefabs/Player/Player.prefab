@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 4622821057288376153}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   minGroundY: 0.995
   minMagnitudeSlideDir: 0.0001
-  anim: {fileID: 0}
+  anim: {fileID: 5101239168673301979}
 --- !u!114 &413885132964259361
 MonoBehaviour:
   m_ObjectHideFlags: 0
