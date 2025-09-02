@@ -239,6 +239,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   minGroundY: 0.995
   minMagnitudeSlideDir: 0.0001
+  anim: {fileID: 0}
 --- !u!114 &413885132964259361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusModel: {fileID: 1443219296310361708}
   stateMachine: {fileID: 1503380182416139665}
+  anim: {fileID: 5101239168673301979}
 --- !u!114 &1443219296310361708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,8 +317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8286a12f9ec959f4390c0374fa58c57a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  animator: {fileID: 1119515944194234214}
+  spriteRenderer: {fileID: 9016132245384684213}
 --- !u!70 &4622821057288376153
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

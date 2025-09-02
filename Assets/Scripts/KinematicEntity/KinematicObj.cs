@@ -16,6 +16,7 @@ public class KinematicObj : MonoBehaviour
     [SerializeField] protected const float minMoveDistance = 0.001f;
     [SerializeField] protected const float shellRadius = 0.05f;
 
+
     public bool isGround { get; private set; } = false;
 
     [SerializeField] protected Vector2 velocity;
@@ -26,6 +27,8 @@ public class KinematicObj : MonoBehaviour
     [SerializeField] private float minGroundY = 0.995f;
     [SerializeField] private float minMagnitudeSlideDir = 0.0001f;
     private bool isJump = false;
+
+    [SerializeField] private AnimationHandler anim;
 
     protected virtual void Awake()
     {
@@ -143,6 +146,10 @@ public class KinematicObj : MonoBehaviour
 
                     velocity = velocityAlongSlide + gravityAlongSlide * Time.fixedDeltaTime;
 
+                    // 경사 탈 때 좌우반전 적용
+                    bool isFlipX = velocity.x < 0;
+                    anim.FlipX(isFlipX);
+
                     dir = velocity * Time.fixedDeltaTime;
 
                     if (dir.y > 0)
@@ -192,6 +199,8 @@ public class KinematicObj : MonoBehaviour
         if (isGround || isJump)
         {
             velocity.x = inputVec.x;
+            bool isFlipX = velocity.x < 0;
+            anim.FlipX(isFlipX);
         }
     }
 

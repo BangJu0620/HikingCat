@@ -21,8 +21,6 @@ public class PlayerController : MonoBehaviour
         stateMachine.UpdateState();
         statusModel.SetTargetVelocity(CurMovementInput);
 
-        bool isFlipX = statusModel.CurVelocity.x < 0;
-        anim.FlipX(isFlipX);
     }
 
 
