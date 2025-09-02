@@ -25,7 +25,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private Transform uiRoot;
     public GameObject previousPanel = null;
 
     private void Awake()
@@ -38,17 +37,6 @@ public class UIManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
-        CreateUIRoot();
-    }
-
-    private void CreateUIRoot()
-    {
-        if (uiRoot == null)
-        {
-            var prefab = Resources.Load<GameObject>("Prefabs/UI/UIRoot");
-            var root = Instantiate(prefab);
-            uiRoot = root.transform.Find("Canvas");
-        }
     }
 
     public void Show(GameObject panel) => panel?.SetActive(true);
