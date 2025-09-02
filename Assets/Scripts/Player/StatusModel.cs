@@ -24,6 +24,14 @@ public class StatusModel : MonoBehaviour
     private float landingTime = 0.2f;
     public float LandingTime => landingTime;
 
+    [SerializeField]
+    private float accelTime = 0.2f;
+    [SerializeField]
+    private float deAccelTime = 0.1f;
+
+    public float AccelRate => 1f / accelTime;
+    public float DeAccelRate => 1f / deAccelTime;
+
     public float GetJumpForce(float chargeRange)
     {
         if(chargeRange < 0.33f)
