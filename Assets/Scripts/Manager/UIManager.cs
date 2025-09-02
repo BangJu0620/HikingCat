@@ -6,23 +6,6 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
-    // public static UIManager instance
-    // {
-    //     get
-    //     {
-    //         if (Instance == null)
-    //         {
-    //             Instance = FindObjectOfType<UIManager>();
-
-    //             if (Instance == null)
-    //             {
-    //                 GameObject go = new GameObject("UIManager");
-    //                 Instance = go.AddComponent<UIManager>();
-    //             }
-    //         }
-    //         return Instance;
-    //     }
-    // }
 
     [SerializeField] private GameObject TitlePanel;
     [SerializeField] private GameObject PausePanel;
