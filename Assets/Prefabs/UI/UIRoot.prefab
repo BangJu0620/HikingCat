@@ -288,6 +288,8 @@ GameObject:
   - component: {fileID: 2377591381390540176}
   - component: {fileID: 302943554524806889}
   - component: {fileID: 2120862934706901786}
+  - component: {fileID: 8814448575841266077}
+  - component: {fileID: 2838554227694915024}
   m_Layer: 5
   m_Name: TitlePanel
   m_TagString: Untagged
@@ -368,6 +370,33 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &8814448575841266077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650016095172556081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3605fe61b363f42c28723dd828d2c9c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startButton: {fileID: 1910292863009054390}
+  quitButton: {fileID: 9035913278698460849}
+  optionsButton: {fileID: 7203342488529707830}
+--- !u!114 &2838554227694915024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650016095172556081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791378d39d3be4192b309dfcbe9270f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &667622819291987063
 GameObject:
   m_ObjectHideFlags: 0
@@ -2401,6 +2430,8 @@ GameObject:
   - component: {fileID: 6626792547086648110}
   - component: {fileID: 8839125726848218832}
   - component: {fileID: 3646903010809873593}
+  - component: {fileID: 4016508888444800963}
+  - component: {fileID: 6743143126700148462}
   m_Layer: 5
   m_Name: OptionPanel
   m_TagString: Untagged
@@ -2478,6 +2509,33 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &4016508888444800963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5120604685944083421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791378d39d3be4192b309dfcbe9270f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6743143126700148462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5120604685944083421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f6fe7b6f38d147988c5daf27dfff900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  returnButton: {fileID: 2381817985903681538}
+  BGM_Slider: {fileID: 2596569413801247017}
+  soundEffect_Slider: {fileID: 443011424052417660}
 --- !u!1 &5854956407649489315
 GameObject:
   m_ObjectHideFlags: 0
@@ -3723,6 +3781,8 @@ GameObject:
   - component: {fileID: 8758914895853164980}
   - component: {fileID: 3043610785060118447}
   - component: {fileID: 630766405858635553}
+  - component: {fileID: 6536910469718055635}
+  - component: {fileID: 8446751512558358394}
   m_Layer: 5
   m_Name: PausePanel
   m_TagString: Untagged
@@ -3800,6 +3860,33 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &6536910469718055635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8543910768322696544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791378d39d3be4192b309dfcbe9270f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8446751512558358394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8543910768322696544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e67b84522bc240c8a6b92f9e45b7f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionsButton: {fileID: 1534988106750239789}
+  returnToGameButton: {fileID: 3526562757783918370}
+  returnToTitleButton: {fileID: 6916796633425851158}
 --- !u!1 &8857097754223600982
 GameObject:
   m_ObjectHideFlags: 0
