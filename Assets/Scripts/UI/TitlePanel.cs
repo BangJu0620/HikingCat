@@ -9,6 +9,7 @@ public class TitlePanel : MonoBehaviour
     [SerializeField] private Button startButton;
     [SerializeField] private Button quitButton;
     [SerializeField] private Button optionsButton;
+    [SerializeField] private GameObject optionsPanel;
 
     private PanelController pc;
 
@@ -36,8 +37,8 @@ public class TitlePanel : MonoBehaviour
 
     public void OnClickOptions()
     {
-        UIManager.Instance.previousPanel = UIManager.Instance.titlePanel;
-        pc.Hide(gameObject);
-        pc.Show(UIManager.Instance.optionsPanel);
+        UIManager.Instance.previousPanel = gameObject;
+        UIManager.Instance.Hide(gameObject);
+        UIManager.Instance.Show(optionsPanel);
     }
 }

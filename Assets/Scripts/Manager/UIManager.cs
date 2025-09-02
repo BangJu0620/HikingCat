@@ -7,14 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
-    [SerializeField] private GameObject TitlePanel;
-    [SerializeField] private GameObject PausePanel;
-    [SerializeField] private GameObject OptionsPanel;
     public GameObject previousPanel = null;
-
-    public GameObject titlePanel => TitlePanel;
-    public GameObject pausePanel => PausePanel;
-    public GameObject optionsPanel => OptionsPanel;
 
     private void Awake()
     {
@@ -27,4 +20,7 @@ public class UIManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
+    public void Show(GameObject panel) => panel?.SetActive(true);
+    public void Hide(GameObject panel) => panel?.SetActive(false);
 }

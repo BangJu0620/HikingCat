@@ -152,9 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e50c1786beb4e5084ea96aa43b90c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitlePanel: {fileID: 1645557580}
-  PausePanel: {fileID: 1157608918}
-  OptionsPanel: {fileID: 1731263516}
   previousPanel: {fileID: 0}
 --- !u!4 &149703209
 Transform:
@@ -331,11 +328,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1157608918 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8543910768322696544, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
-  m_PrefabInstance: {fileID: 5449760538844423394}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1190519468
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,11 +372,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1645557580 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 650016095172556081, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
-  m_PrefabInstance: {fileID: 5449760538844423394}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1731263516 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5120604685944083421, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
@@ -398,6 +385,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 650016095172556081, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1068854067753571408, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -482,6 +473,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIRoot
       objectReference: {fileID: 0}
+    - target: {fileID: 8446751512558358394, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: optionsPanel
+      value: 
+      objectReference: {fileID: 1731263516}
+    - target: {fileID: 8543910768322696544, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814448575841266077, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: optionsPanel
+      value: 
+      objectReference: {fileID: 1731263516}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

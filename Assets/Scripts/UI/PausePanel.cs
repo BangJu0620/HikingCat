@@ -8,6 +8,7 @@ public class PausePanel : MonoBehaviour
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button returnToGameButton;
     [SerializeField] private Button returnToTitleButton;
+    [SerializeField] private GameObject optionsPanel;
 
     private PanelController pc;
 
@@ -25,9 +26,9 @@ public class PausePanel : MonoBehaviour
 
     public void OnClickOptions()
     {
-        UIManager.Instance.previousPanel = UIManager.Instance.pausePanel;
-        pc.Hide(gameObject);
-        pc.Show(UIManager.Instance.optionsPanel);
+        UIManager.Instance.previousPanel = gameObject;
+        UIManager.Instance.Hide(gameObject);
+        UIManager.Instance.Show(optionsPanel);
     }
 
     public void OnClickReturnToGame()

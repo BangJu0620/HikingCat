@@ -18,13 +18,16 @@ public class OptionsPanel : MonoBehaviour
 
         if (returnButton)
             returnButton.onClick.AddListener(OnClickReturn);
-        
+
         prev = UIManager.Instance.previousPanel;
     }
 
     public void OnClickReturn()
     {
-        pc.Hide(gameObject);
-        pc.Show(prev);
+        prev = UIManager.Instance.previousPanel;
+        UIManager.Instance.Hide(gameObject);
+
+        if (prev)
+            UIManager.Instance.Show(prev);
     }
 }
