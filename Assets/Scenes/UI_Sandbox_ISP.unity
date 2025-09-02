@@ -469,9 +469,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1180997301403491335, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278806488169288773, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3574661276308516700, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
       propertyPath: m_Name
       value: UIRoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4180604118298864122, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120604685944083421, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906498727168811764, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8446751512558358394, guid: 35ac654e5d0ba4d9ea4fe3eb1a0d6d39, type: 3}
       propertyPath: optionsPanel
