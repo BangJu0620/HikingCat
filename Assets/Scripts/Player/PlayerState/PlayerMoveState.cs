@@ -25,14 +25,21 @@ public class PlayerMoveState : IPlayerState
         player.status.CurVelocity = 
             Vector2.Lerp(player.status.CurVelocity, player.status.TargetVelocity, 
             player.status.AccelRate * Time.deltaTime);
+
+        if (!player.controller.IsMoveKeyHeld)
+        {
+            if(Mathf.Abs(player.status.CurVelocity.x) <= 0.05f)
+            {
+                player.stateMachine.ChangeState<PlayerIdleState>();
+            }
+        }
+
         player.body.InputHandler(player.status.CurVelocity);
     }
 
     public void InputHandle(InputType type)
     {
-        if (type == InputType.StopMove)
-            player.stateMachine.ChangeState<PlayerIdleState>();
-        else if (type == InputType.JumpPressed)
+        if (type == InputType.JumpPressed)
             player.stateMachine.ChangeState<PlayerChargeState>();
     }
 

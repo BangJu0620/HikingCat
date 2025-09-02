@@ -7,25 +7,22 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Inspector 연결 오브젝트")]
-    [SerializeField] private KinematicObj physicsModel;
     [SerializeField] private StatusModel statusModel;
     [SerializeField] private PlayerStateMachine stateMachine;
-
+    [SerializeField] private AnimationHandler anim;
 
     public Vector2 CurMovementInput { get; private set; }
     public bool IsJumpKeyHeld { get; private set; }
+    public bool IsMoveKeyHeld { get; private set; }
 
     private void Update()
     {
         // 상태 업데이트만 호출
         stateMachine.UpdateState();
         statusModel.SetTargetVelocity(CurMovementInput);
-    }
-
-    private void SetTargetVelocity()
-    {
 
     }
+
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -34,11 +31,13 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             CurMovementInput = input;
+            IsMoveKeyHeld = true;
             stateMachine.OnInput(InputType.Move);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             CurMovementInput = Vector2.zero;
+            IsMoveKeyHeld = false;
             stateMachine.OnInput(InputType.StopMove);
         }
     }

@@ -15,14 +15,14 @@ public class Lever : MonoBehaviour
     Door rightUpDoor;
     Door leftDownDoor;
 
-    bool isOpened = false;
+    [SerializeField] bool isOpened = false;
 
     [Header("·¹¹ö")]
     [SerializeField] float colliderSize;
 
     Collider2D collider;
-    
-    bool canInteract = false;
+
+    [SerializeField] bool canInteract = false;
 
     private void Awake()
     {
