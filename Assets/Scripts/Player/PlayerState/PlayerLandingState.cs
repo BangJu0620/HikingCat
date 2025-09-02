@@ -15,6 +15,7 @@ public class PlayerLandingState : IPlayerState
     {
         landingStart = Time.time;
         player.anim.PlayAnimation(PlayerAnimationState.Landing);
+        player.status.SetTargetVelocity(Vector2.zero);
     }
 
     public void ExitState() { }
@@ -31,5 +32,5 @@ public class PlayerLandingState : IPlayerState
         }
     }
 
-    public void InputHandler<T>(InputType type, T data) { }
+    public void InputHandle(InputType type) { }
 }

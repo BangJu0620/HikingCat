@@ -38,10 +38,10 @@ public class PlayerStateMachine : StateMachine
     }
 
 
-    public void OnInput<T>(InputType type, T data)
+    public void OnInput(InputType type)
     {
         if (currentState == null) return;
-        ((IPlayerState)currentState)?.InputHandler(type, data);
+        ((IPlayerState)currentState)?.InputHandle(type);
     }
 }
 

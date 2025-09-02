@@ -16,10 +16,11 @@ public class PlayerJumpUpState : IPlayerState
         if (player.body.Velocity.y <= 0)
             player.stateMachine.ChangeState<PlayerFallDownState>();
 
-        player.body.InputHandler(player.controller.CurMovementInput * player.status.Speed);
+        player.status.CurVelocity =
+            Vector2.Lerp(player.status.CurVelocity, player.status.TargetVelocity,
+            player.status.AccelRate * Time.deltaTime);
+        player.body.InputHandler(player.status.CurVelocity);
     }
 
-    public void InputHandler<T>(InputType type, T data)
-    {
-    }
+    public void InputHandle(InputType type) { }
 }

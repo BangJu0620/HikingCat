@@ -19,6 +19,12 @@ public class PlayerController : MonoBehaviour
     {
         // 상태 업데이트만 호출
         stateMachine.UpdateState();
+        statusModel.SetTargetVelocity(CurMovementInput);
+    }
+
+    private void SetTargetVelocity()
+    {
+
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -28,12 +34,12 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             CurMovementInput = input;
-            stateMachine.OnInput(InputType.Move, input);
+            stateMachine.OnInput(InputType.Move);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             CurMovementInput = Vector2.zero;
-            stateMachine.OnInput<Null>(InputType.StopMove, null);
+            stateMachine.OnInput(InputType.StopMove);
         }
     }
 
@@ -42,12 +48,12 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
         {
             IsJumpKeyHeld = true;
-            stateMachine.OnInput<Null>(InputType.JumpPressed, null);
+            stateMachine.OnInput(InputType.JumpPressed);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             IsJumpKeyHeld = false;
-            stateMachine.OnInput<Null>(InputType.JumpReleased, null);
+            stateMachine.OnInput(InputType.JumpReleased);
         }
     }
 

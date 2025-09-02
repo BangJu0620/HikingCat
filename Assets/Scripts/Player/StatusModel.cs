@@ -17,7 +17,7 @@ public class StatusModel : MonoBehaviour
     private float maxJumpForce = 10.8f;
 
     [SerializeField]
-    private float maxChargeTime;
+    private float maxChargeTime = 1.2f;
     public float MaxChargeTime => maxChargeTime;
 
     [SerializeField]
@@ -31,6 +31,9 @@ public class StatusModel : MonoBehaviour
 
     public float AccelRate => 1f / accelTime;
     public float DeAccelRate => 1f / deAccelTime;
+
+    public Vector2 TargetVelocity {  get; private set; }
+    public Vector2 CurVelocity {  get; set; }
 
     public float GetJumpForce(float chargeRange)
     {
@@ -47,4 +50,8 @@ public class StatusModel : MonoBehaviour
         return maxJumpForce;
     }
 
+    public void SetTargetVelocity(Vector2 dir)
+    {
+        TargetVelocity = dir * Speed;
+    }
 }

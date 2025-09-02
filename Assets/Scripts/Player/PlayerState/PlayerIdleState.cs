@@ -18,7 +18,7 @@ public class PlayerIdleState : IPlayerState
             player.stateMachine.ChangeState<PlayerFallDownState>();
     }
 
-    public void InputHandler<T>(InputType type, T data)
+    public void InputHandle(InputType type)
     {
         if (type == InputType.Move)
             player.stateMachine.ChangeState<PlayerMoveState>();

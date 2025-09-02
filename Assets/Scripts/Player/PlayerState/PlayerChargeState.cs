@@ -15,14 +15,15 @@ public class PlayerChargeState : IPlayerState
     public void EnterState()
     {
         jumpChargeT = Time.time;
-        player.anim.PlayAnimation(PlayerAnimationState.Charge);
+        player.anim.PlayAnimation(PlayerAnimationState.Charge); 
+        player.status.SetTargetVelocity(Vector2.zero);
     }
 
     public void ExitState()
     {
         float heldTime = Time.time - jumpChargeT;
         float chargeRange = Mathf.Clamp01(heldTime / player.status.MaxChargeTime);
-
+        Debug.Log(chargeRange);
         player.body.Jump(player.status.GetJumpForce(chargeRange));
 
     }
@@ -36,7 +37,7 @@ public class PlayerChargeState : IPlayerState
     {
     }
 
-    public void InputHandler<T>(InputType type, T data)
+    public void InputHandle(InputType type)
     {
         if (type == InputType.JumpReleased)
         {
