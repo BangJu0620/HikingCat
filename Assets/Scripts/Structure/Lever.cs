@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Lever : MonoBehaviour
 {
+    [Header("¹®")]
     [SerializeField] GameObject rightUpDoorObj;
     [SerializeField] GameObject leftDownDoorObj;
     [SerializeField] bool isHorizontal;
@@ -13,12 +14,20 @@ public class Lever : MonoBehaviour
     Door leftDownDoor;
 
     bool isOpened = false;
+
+    [Header("·¹¹ö")]
+    [SerializeField] float triggerSize;
+
+    Collider2D collider;
+    
     bool canInteract = false;
 
     private void Awake()
     {
         rightUpDoor = rightUpDoorObj.GetComponent<Door>();
         leftDownDoor = leftDownDoorObj.GetComponent<Door>();
+        collider = GetComponent<Collider2D>();
+        SetSizeTrigger();
     }
 
     private void Update()
@@ -57,5 +66,23 @@ public class Lever : MonoBehaviour
         StartCoroutine(rightUpDoor.OpenDoor(1, isHorizontal));
         StartCoroutine(leftDownDoor.OpenDoor(-1, isHorizontal));
         isOpened = true;
+    }
+
+    void SetSizeTrigger()
+    {
+        if(collider is BoxCollider2D)
+        {
+            BoxCollider2D box = collider as BoxCollider2D;
+            box.size = Vector2.one * triggerSize;
+        }
+        else if(collider is CircleCollider2D)
+        {
+            CircleCollider2D circle = collider as CircleCollider2D;
+            circle.radius = triggerSize;
+        }
+        else
+        {
+            return;
+        }
     }
 }
