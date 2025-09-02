@@ -15,7 +15,8 @@ public class ThornyBush : MonoBehaviour
         Debug.Log($"{collision.gameObject.name} enter");
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(Damage());
+            //StartCoroutine(Damage());
+            InvokeRepeating("TickThornDamage", 0, delay);
         }
     }
 
@@ -24,21 +25,27 @@ public class ThornyBush : MonoBehaviour
         Debug.Log($"{collision.gameObject.name} exit");
         if (collision.gameObject.CompareTag("Player"))
         {
-            StopAllCoroutines();
+            //StopAllCoroutines();
+            CancelInvoke("TickThornDamage");
         }
     }
 
-    IEnumerator Damage()
+    //IEnumerator Damage()
+    //{
+    //    while (true)
+    //    {
+    //        // 데미지 입히기
+
+    //        Debug.Log("데미지");
+
+    //        yield return new WaitForSeconds(delay);
+    //    }
+    //}
+
+    void TickThornDamage()
     {
-        while (true)
-        {
-            // 데미지 입히기
+        // 데미지 입히기
 
-            // 애니메이션도 작동해야될까
-
-            Debug.Log("데미지");
-
-            yield return new WaitForSeconds(delay);
-        }
+        Debug.Log($"{damage} 데미지");
     }
 }
