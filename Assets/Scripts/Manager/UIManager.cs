@@ -1,18 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static UIManager instance;
+    public static UIManager Instance
     {
-        
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<UIManager>();
+
+                if (instance == null)
+                {
+                    GameObject go = new GameObject("UIManager");
+                    instance = go.AddComponent<UIManager>();
+                    DontDestroyOnLoad(go);
+                }
+            }
+            return instance;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public GameObject previousPanel = null;
+
+    private void Awake()
     {
-        
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
+
+    public void Show(GameObject panel) => panel?.SetActive(true);
+    public void Hide(GameObject panel) => panel?.SetActive(false);
 }
