@@ -6,19 +6,20 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    private IState currentState;
-    private readonly Dictionary<Type, IState> states = new();
+    protected IPlayerState currentState;
+    private readonly Dictionary<Type, IPlayerState> states = new();
     [SerializeField] private string CurrentState;   // State 디버깅용
 
-    public void AddState(IState state) 
+    public void AddState(IPlayerState state) 
         => states[state.GetType()] = state;
 
-    public void ChangeState<T>() where T : IState
+    public void ChangeState<T>() where T : IPlayerState
     {
         // 현재 상태가 null인 경우
         if (currentState == null)
         {
             currentState = states[typeof(T)];
+            CurrentState = currentState.GetType().Name;
             currentState?.EnterState();
             return;
         }
@@ -36,6 +37,7 @@ public class StateMachine : MonoBehaviour
         // 새로운 상태의 진입
         currentState = states[typeof(T)];
         currentState.EnterState();
+
         CurrentState = currentState.GetType().Name;
     }
 

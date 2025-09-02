@@ -16,6 +16,14 @@ public class StatusModel : MonoBehaviour
     [SerializeField]
     private float maxJumpForce = 10.8f;
 
+    [SerializeField]
+    private float maxChargeTime;
+    public float MaxChargeTime => maxChargeTime;
+
+    [SerializeField]
+    private float landingTime = 0.2f;
+    public float LandingTime => landingTime;
+
     public float GetJumpForce(float chargeRange)
     {
         if(chargeRange < 0.33f)

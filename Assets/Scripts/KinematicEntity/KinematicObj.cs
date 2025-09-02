@@ -19,7 +19,7 @@ public class KinematicObj : MonoBehaviour
     public bool isGround { get; private set; } = false;
 
     [SerializeField] protected Vector2 velocity;
-
+    public Vector2 Velocity { get { return velocity; } }
     private Vector2 additionalVelocty;
     private Vector2 groundNormal = Vector2.up;
 
