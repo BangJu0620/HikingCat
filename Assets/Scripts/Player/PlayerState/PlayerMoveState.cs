@@ -5,10 +5,15 @@ using UnityEngine;
 public class PlayerMoveState : IPlayerState
 {
     public Player player { get; set; }
+
     public void Init(Player player)
     {
         this.player = player;
+        footStepRate = .5f;
     }
+
+    private float footStepRate;
+    private float lastFootStepPlayTime;
 
     public void EnterState() => player.anim.PlayAnimation(PlayerAnimationState.Move);
     public void ExitState() { }
@@ -31,6 +36,15 @@ public class PlayerMoveState : IPlayerState
             if(Mathf.Abs(player.status.CurVelocity.x) <= 0.05f)
             {
                 player.stateMachine.ChangeState<PlayerIdleState>();
+            }
+        }
+
+        if (player.footStep != null)
+        {
+            if(Time.time - lastFootStepPlayTime > footStepRate)
+            {
+                lastFootStepPlayTime = Time.time;
+                player.footStep.PlayFootStepSFX();
             }
         }
 
