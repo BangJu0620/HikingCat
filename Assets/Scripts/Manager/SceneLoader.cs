@@ -1,18 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : Singleton<SceneLoader>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void LoadTitleScene() => SceneManager.LoadScene("TitleScene_Test");
+    public void LoadGameScene() =>  SceneManager.LoadScene("GameScene_Test");
+    public void QuitGame() => Application.Quit();
 }
