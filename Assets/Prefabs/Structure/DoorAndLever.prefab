@@ -427,6 +427,7 @@ GameObject:
   - component: {fileID: 1606739966384012516}
   - component: {fileID: 6779389339512343958}
   - component: {fileID: 848836949966597109}
+  - component: {fileID: 4460309937659965751}
   m_Layer: 10
   m_Name: Lever
   m_TagString: Untagged
@@ -469,6 +470,7 @@ MonoBehaviour:
   speed: 3
   isOpened: 0
   colliderSize: 3
+  anim: {fileID: 4460309937659965751}
   canInteract: 0
 --- !u!61 &848836949966597109
 BoxCollider2D:
@@ -515,6 +517,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &4460309937659965751
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6467511232963445831}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 675e041a7f424164b8ebb7ff16cccefe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7787920849394821674
 GameObject:
   m_ObjectHideFlags: 0

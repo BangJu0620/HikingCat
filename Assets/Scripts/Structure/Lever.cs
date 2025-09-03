@@ -19,6 +19,7 @@ public class Lever : MonoBehaviour
 
     [Header("·¹¹ö")]
     [SerializeField] float colliderSize;
+    [SerializeField] Animator anim;
 
     Collider2D collider;
 
@@ -68,6 +69,7 @@ public class Lever : MonoBehaviour
         StartCoroutine(rightUpDoor.OpenDoor(distance, speed, 1, isHorizontal));
         StartCoroutine(leftDownDoor.OpenDoor(distance, speed, -1, isHorizontal));
         isOpened = true;
+        anim.SetBool("IsOpened", true);
     }
 
     void SetSizeTrigger()
