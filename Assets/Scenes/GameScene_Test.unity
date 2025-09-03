@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &453199648 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7646519373773565737, guid: 34d10bae1e3bf40b7b2558506553f98f, type: 3}
+  m_PrefabInstance: {fileID: 2413099867135278081}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +228,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 665015296535767921, guid: 34d10bae1e3bf40b7b2558506553f98f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1018264600718163270, guid: 34d10bae1e3bf40b7b2558506553f98f, type: 3}
       propertyPath: m_Name
       value: GameSceneUIRoot
@@ -267,6 +276,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4426092072451815116, guid: 34d10bae1e3bf40b7b2558506553f98f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845260473507347155, guid: 34d10bae1e3bf40b7b2558506553f98f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879995725297397262, guid: 34d10bae1e3bf40b7b2558506553f98f, type: 3}
+      propertyPath: optionsPanel
+      value: 
+      objectReference: {fileID: 453199648}
+    - target: {fileID: 7516827702270515779, guid: 34d10bae1e3bf40b7b2558506553f98f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646519373773565737, guid: 34d10bae1e3bf40b7b2558506553f98f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8473575973025472651, guid: 34d10bae1e3bf40b7b2558506553f98f, type: 3}
+      propertyPath: optionsPanel
+      value: 
+      objectReference: {fileID: 453199648}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

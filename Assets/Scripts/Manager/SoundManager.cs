@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using System.Collections.Generic;
 
 public class SoundManager : Singleton<SoundManager>
 {
@@ -74,16 +73,16 @@ public class SoundManager : Singleton<SoundManager>
 
         if (bgmSource.clip == newClip) return;
 
-        StopAllCoroutines(); // ±âÁ¸ ÆäÀÌµå ÁßÁö
+        StopAllCoroutines(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
         StartCoroutine(FadeAndSwitchBGM(newClip, loop, fadeDuration));
     }
 
     private IEnumerator FadeAndSwitchBGM(AudioClip newClip, bool loop, float fadeDuration)
     {
-        // ÆäÀÌµå¾Æ¿ô
+        // ï¿½ï¿½ï¿½Ìµï¿½Æ¿ï¿½
         float currentVolume;
         audioMixer.GetFloat(bgmVolumeParam, out currentVolume);
-        currentVolume = Mathf.Pow(10, currentVolume / 20f); // dB ¡æ linear
+        currentVolume = Mathf.Pow(10, currentVolume / 20f); // dB ï¿½ï¿½ linear
 
         for (float t = 0; t < fadeDuration; t += Time.unscaledDeltaTime)
         {
@@ -92,15 +91,15 @@ public class SoundManager : Singleton<SoundManager>
             yield return null;
         }
 
-        audioMixer.SetFloat(bgmVolumeParam, -80f); // ¿ÏÀü À½¼Ò°Å
+        audioMixer.SetFloat(bgmVolumeParam, -80f); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò°ï¿½
 
-        // Å¬¸³ ±³Ã¼
+        // Å¬ï¿½ï¿½ ï¿½ï¿½Ã¼
         bgmSource.Stop();
         bgmSource.clip = newClip;
         bgmSource.loop = loop;
         bgmSource.Play();
 
-        // ÆäÀÌµåÀÎ
+        // ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½
         float targetDesbel = Mathf.Pow(10, bgmVolume / 20);
         for (float t = 0; t < fadeDuration; t += Time.unscaledDeltaTime)
         {
@@ -109,7 +108,7 @@ public class SoundManager : Singleton<SoundManager>
             yield return null;
         }
 
-        audioMixer.SetFloat(bgmVolumeParam, bgmVolume); // 0 dB·Î °íÁ¤
+        audioMixer.SetFloat(bgmVolumeParam, bgmVolume); // 0 dBï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     public void StopBGM()
