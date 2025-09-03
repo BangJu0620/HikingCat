@@ -20,6 +20,8 @@ public class Lever : MonoBehaviour
     [Header("레버")]
     [SerializeField] float colliderSize;
     [SerializeField] Animator anim;
+    [SerializeField] AudioClip leverSFX;
+    [SerializeField] float leverVolume;
 
     Collider2D collider;
 
@@ -65,6 +67,7 @@ public class Lever : MonoBehaviour
     void InteractLever()
     {
         // 사운드 재생
+        if (leverSFX != null) SoundManager.Instance.PlaySFX(leverSFX, leverVolume);
 
         StartCoroutine(rightUpDoor.OpenDoor(distance, speed, 1, isHorizontal));
         StartCoroutine(leftDownDoor.OpenDoor(distance, speed, -1, isHorizontal));
