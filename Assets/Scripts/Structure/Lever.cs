@@ -6,14 +6,15 @@ using UnityEngine.UI;
 public class Lever : MonoBehaviour
 {
     [Header("문")]
-    [SerializeField] GameObject rightUpDoorObj;
-    [SerializeField] GameObject leftDownDoorObj;
-    [SerializeField] bool isHorizontal;
-    [SerializeField] float distance;
-    [SerializeField] float speed;
+    //[SerializeField] GameObject rightUpDoorObj;
+    //[SerializeField] GameObject leftDownDoorObj;
+    [SerializeField] Door door;
+    //[SerializeField] bool isHorizontal;
+    //[SerializeField] float distance;
+    //[SerializeField] float speed;
 
-    Door rightUpDoor;
-    Door leftDownDoor;
+    //Door rightUpDoor;
+    //Door leftDownDoor;
 
     [SerializeField] bool isOpened = false;
 
@@ -29,8 +30,8 @@ public class Lever : MonoBehaviour
 
     private void Awake()
     {
-        rightUpDoor = rightUpDoorObj.GetComponent<Door>();
-        leftDownDoor = leftDownDoorObj.GetComponent<Door>();
+        //rightUpDoor = rightUpDoorObj.GetComponent<Door>();
+        //leftDownDoor = leftDownDoorObj.GetComponent<Door>();
         collider = GetComponent<Collider2D>();
         SetSizeTrigger();
     }
@@ -69,8 +70,11 @@ public class Lever : MonoBehaviour
         // 사운드 재생
         if (leverSFX != null) SoundManager.Instance.PlaySFX(leverSFX, leverVolume);
 
-        StartCoroutine(rightUpDoor.OpenDoor(distance, speed, 1, isHorizontal));
-        StartCoroutine(leftDownDoor.OpenDoor(distance, speed, -1, isHorizontal));
+        //StartCoroutine(rightUpDoor.OpenDoor(distance, speed, 1, isHorizontal));
+        //StartCoroutine(leftDownDoor.OpenDoor(distance, speed, -1, isHorizontal));
+
+        door.Open();
+
         isOpened = true;
         anim.SetBool("IsOpened", true);
     }
