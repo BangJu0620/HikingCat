@@ -7,8 +7,16 @@ public class PlayerJumpUpState : IPlayerState
     {
         this.player = player;
     }
-    public void EnterState() => player.anim.PlayAnimation(PlayerAnimationState.JumpUp);
-    public void ExitState() { }
+    public void EnterState() 
+    {
+        player.body.OnWallHitAction += PlayWallHit;
+        player.anim.PlayAnimation(PlayerAnimationState.JumpUp);
+    }
+
+    public void ExitState()
+    {
+        player.body.OnWallHitAction -= PlayWallHit;
+    }
     public void ReEnterState() { }
 
     public void UpdateState()
@@ -23,4 +31,12 @@ public class PlayerJumpUpState : IPlayerState
     }
 
     public void InputHandle(InputType type) { }
+
+    public void PlayWallHit()
+    {
+        if (player.footStep != null)
+        {
+            player.footStep.PlayWallHitSFX();
+        }
+    }
 }

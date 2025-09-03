@@ -1,5 +1,97 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &171903506589548688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7586266395630950016}
+  - component: {fileID: 4913283909082684218}
+  - component: {fileID: 6214010292243653089}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7586266395630950016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171903506589548688}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3206048767007354567}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &4913283909082684218
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171903506589548688}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &6214010292243653089
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171903506589548688}
+  m_Enabled: 1
 --- !u!1 &7228337225785345227
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +215,7 @@ GameObject:
   - component: {fileID: 1503380182416139665}
   - component: {fileID: 5101239168673301979}
   - component: {fileID: 4622821057288376153}
+  - component: {fileID: 8926387606870491996}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -144,6 +237,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3389763989861382812}
+  - {fileID: 7586266395630950016}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4776997952124387568
@@ -226,7 +320,7 @@ MonoBehaviour:
     useTriggers: 0
     useLayerMask: 0
     useDepth: 0
-    useOutsideDepth: 0
+    useOutsideDepth: 1
     useNormalAngle: 0
     useOutsideNormalAngle: 0
     layerMask:
@@ -240,6 +334,9 @@ MonoBehaviour:
   minGroundY: 0.995
   minMagnitudeSlideDir: 0.0001
   anim: {fileID: 5101239168673301979}
+  isSlide: 0
+  slideCheckCount: 10
+  checkFrame: 0
 --- !u!114 &413885132964259361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +389,7 @@ MonoBehaviour:
   stateMachine: {fileID: 1503380182416139665}
   anim: {fileID: 5101239168673301979}
   status: {fileID: 1443219296310361708}
+  footStep: {fileID: 0}
 --- !u!114 &1503380182416139665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,3 +452,43 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
+--- !u!114 &8926387606870491996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7599048612935595644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56d7b491a94732a4795d4eb48285492f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footStepSFXs:
+  - {fileID: 8300000, guid: 5713f2d5b71dd7e4f8d7e769cae48551, type: 3}
+  - {fileID: 8300000, guid: b5d36aa85d7262546b8a494be69fd883, type: 3}
+  - {fileID: 8300000, guid: 87f31a2eae52a934188acf2a217d0361, type: 3}
+  - {fileID: 8300000, guid: 8e83928fb4971d94da356d09b1344139, type: 3}
+  - {fileID: 8300000, guid: 84d5b0731e683ba419b4346fc9c74ae2, type: 3}
+  - {fileID: 8300000, guid: 58d46395af96d9a42a750852a7e0371d, type: 3}
+  - {fileID: 8300000, guid: 7ebb018bd83c77341a13819617735948, type: 3}
+  - {fileID: 8300000, guid: 531812f812301d84f9e4fc454a357df6, type: 3}
+  - {fileID: 8300000, guid: 5ffa8bfc01cc5f64886b3fd8a6f230db, type: 3}
+  - {fileID: 8300000, guid: 93892e01fa105fb4fb77c392b443a8f1, type: 3}
+  - {fileID: 8300000, guid: 43c50b024dbcef34f8ad435ad149dbac, type: 3}
+  - {fileID: 8300000, guid: 96413abc547adcc4d967a382a4541ca5, type: 3}
+  jumpStepSFXs:
+  - {fileID: 8300000, guid: 1418ac0b8a205fb4f990b11db7ab1dc1, type: 3}
+  - {fileID: 8300000, guid: 78e3bfd36715448468d1df090fb3823f, type: 3}
+  - {fileID: 8300000, guid: 25b57b010ee9e8643ab1f359b2922c73, type: 3}
+  - {fileID: 8300000, guid: 35689cdd9c100bf4bafa2305d8c77106, type: 3}
+  - {fileID: 8300000, guid: ef7206384a9631042890b786f9040490, type: 3}
+  - {fileID: 8300000, guid: 6a3aca63a17f65648b0d9d76ecc77bc0, type: 3}
+  - {fileID: 8300000, guid: 92eb4db47d6e39a4eb73c0ea80f628d0, type: 3}
+  - {fileID: 8300000, guid: b01b5725312579748bfc20958a1fd9c4, type: 3}
+  wallHitSFXs:
+  - {fileID: 8300000, guid: be3858584f97cb642a12ec3ed0175aa1, type: 3}
+  - {fileID: 8300000, guid: 45b4aefff14b6e449b6c4de2b51bb376, type: 3}
+  FootStepVolume: 0.4
+  JumpStepVolume: 0.4
+  WallHitVolume: 0.4

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections.Generic;
@@ -29,7 +30,9 @@ public class SoundManager : Singleton<SoundManager>
         Master, Music, SFX
     }
 
-    private float masterVolume, bgmVolume, sfxVolume;
+    public float masterVolume { get; private set; }
+    public float bgmVolume { get; private set; }
+    public float sfxVolume { get; private set; }    
     private float SetMasterVolume(float volume) => masterVolume = Mathf.Log10(Mathf.Clamp01(volume)) * 20f;
     private float SetBGMVolume(float volume) => bgmVolume = Mathf.Log10(Mathf.Clamp01(volume)) * 20f;
     private float SetSFXVolume(float volume) => sfxVolume = Mathf.Log10(Mathf.Clamp01(volume)) * 20f;
