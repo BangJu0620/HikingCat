@@ -580,18 +580,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 92eb4db47d6e39a4eb73c0ea80f628d0, type: 3}
   - {fileID: 8300000, guid: b01b5725312579748bfc20958a1fd9c4, type: 3}
   wallHitSFXs:
-  - {fileID: 8300000, guid: 9acad95f086e22744ad95b652f77d65a, type: 3}
-  - {fileID: 8300000, guid: e3402032b31418545a74c1268876164b, type: 3}
-  - {fileID: 8300000, guid: cc929eb0ae3eea64ea761b47f9541e61, type: 3}
-  - {fileID: 8300000, guid: 39d8b03838b797341af944ecd9b27673, type: 3}
-  - {fileID: 8300000, guid: 185eb753d5e46d94eaac9ba6f94f75d6, type: 3}
-  - {fileID: 8300000, guid: 572cf31dd117aef4dbf15e4040db2185, type: 3}
-  - {fileID: 8300000, guid: ae9f05f2623b8644dab94368f8ac230a, type: 3}
-  - {fileID: 8300000, guid: 1fd3ccabcc0db05479dbdbaec1566f6a, type: 3}
-  - {fileID: 8300000, guid: 5c65cca98e75ca14f989074561a40167, type: 3}
-  - {fileID: 8300000, guid: 7cc762c901ea88e4a9389373dae9725c, type: 3}
-  - {fileID: 8300000, guid: 226e39e51a52fd8499ddd762175b3fbe, type: 3}
-  - {fileID: 8300000, guid: 7bf3dd54f9006e64b8e702e05dbb6675, type: 3}
+  - {fileID: 8300000, guid: be3858584f97cb642a12ec3ed0175aa1, type: 3}
+  - {fileID: 8300000, guid: 45b4aefff14b6e449b6c4de2b51bb376, type: 3}
   FootStepVolume: 0.4
   JumpStepVolume: 0.4
   WallHitVolume: 0.4
