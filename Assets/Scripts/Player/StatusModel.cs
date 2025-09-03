@@ -42,12 +42,7 @@ public class StatusModel : MonoBehaviour
             return baseJump;
         }
 
-        if(chargeRange < 0.66f)
-        {
-            return middleJump;
-        }
-
-        return maxJumpForce;
+        return Mathf.Lerp(baseJump, maxJumpForce, chargeRange);
     }
 
     public void SetTargetVelocity(Vector2 dir)

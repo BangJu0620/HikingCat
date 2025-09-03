@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] public PlayerStateMachine stateMachine;
     [SerializeField] public AnimationHandler anim;
     [SerializeField] public StatusModel status;
+    [SerializeField] public FootStep footStep;
 
     private void Awake()
     {
@@ -39,6 +40,13 @@ public class Player : MonoBehaviour
             anim = GetComponent<AnimationHandler>();
             if (anim == null)
                 anim = gameObject.AddComponent<AnimationHandler>();
+        }
+
+        if(footStep == null)
+        {
+            footStep = GetComponent<FootStep>();
+            if(footStep == null) 
+                footStep = gameObject.AddComponent<FootStep>();
         }
     }
 }

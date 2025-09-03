@@ -16,6 +16,11 @@ public class PlayerLandingState : IPlayerState
         landingStart = Time.time;
         player.anim.PlayAnimation(PlayerAnimationState.Landing);
         player.status.SetTargetVelocity(Vector2.zero);
+
+        if (player.footStep != null)
+        {
+            player.footStep.PlayFootStepSFX();
+        }
     }
 
     public void ExitState() { }
