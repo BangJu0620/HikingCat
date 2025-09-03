@@ -1083,6 +1083,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8926387606870491996, guid: 2465c67354a3b0b4fb72ddf824ecc8ed, type: 3}
+      propertyPath: wallHitSFXs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926387606870491996, guid: 2465c67354a3b0b4fb72ddf824ecc8ed, type: 3}
+      propertyPath: wallHitSFXs.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: be3858584f97cb642a12ec3ed0175aa1, type: 3}
+    - target: {fileID: 8926387606870491996, guid: 2465c67354a3b0b4fb72ddf824ecc8ed, type: 3}
+      propertyPath: wallHitSFXs.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 45b4aefff14b6e449b6c4de2b51bb376, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
