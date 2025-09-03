@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8915768747111517114}
   - component: {fileID: 8342477496996488776}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,8 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 599d7ce8abc677c4197f34ff03b20582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 10
-  isUpPos: 0
+  jumpPower: 14
 --- !u!50 &78579230195669846
 Rigidbody2D:
   serializedVersion: 4

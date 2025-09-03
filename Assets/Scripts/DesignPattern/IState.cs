@@ -23,4 +23,5 @@ public interface IState
     /// Update 처리 핸들러
     /// </summary>
     void UpdateState();
+
 }

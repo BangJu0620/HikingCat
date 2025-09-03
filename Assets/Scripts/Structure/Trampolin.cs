@@ -17,7 +17,7 @@ public class Trampolin : MonoBehaviour
             {
                 Debug.Log(Vector2.Dot(contact.normal, Vector2.up));
                 // 어디에서 충돌했는지 검사하기, 옆면이면 무시하기
-                if (Vector2.Dot(contact.normal, Vector2.up) < -0.995f)
+                if (Vector2.Dot(contact.normal, Vector2.up) < -0.9f)
                 {
                     isUpPos = true;
                     break;
@@ -27,8 +27,8 @@ public class Trampolin : MonoBehaviour
             {
                 // 플레이어한테 점프 시키기
                 kineObj.Jump(jumpPower, true);
+                isUpPos = false;
             }
-            isUpPos = false;
         }
     }
 
