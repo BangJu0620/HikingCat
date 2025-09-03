@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections.Generic;
+using System.Collections;
 
 public class SoundManager : Singleton<SoundManager>
 {
