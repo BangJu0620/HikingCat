@@ -14,28 +14,29 @@ public class KinematicObj : MonoBehaviour
     [SerializeField] protected ContactFilter2D contactFilter;
     [SerializeField] protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
 
-    [SerializeField] protected const float minMoveDistance = 0.001f;
-    [SerializeField] protected const float shellRadius = 0.05f;
+    [SerializeField] protected const float minMoveDistance = 0.001f;    // 최소 이동 거리
+    [SerializeField] protected const float shellRadius = 0.05f;         // 살짝 떠있는 거리
 
 
-    public bool isGround { get; private set; } = false;
+    public bool isGround { get; private set; } = false;     // 땅을 밟고있는지
 
-    [SerializeField] protected Vector2 velocity;
+    [SerializeField] protected Vector2 velocity;            // 속력
     public Vector2 Velocity { get { return velocity; } }
-    private Vector2 additionalVelocty;
-    private Vector2 groundNormal = Vector2.up;
+    private Vector2 additionalVelocty;                      // 외부 힘
+    private Vector2 groundNormal = Vector2.up;              
 
-    [SerializeField] private float minGroundY = 0.995f;
-    [SerializeField] private float minMagnitudeSlideDir = 0.0001f;
-    private bool isJump = false;
+    [SerializeField] private float minGroundY = 0.995f;     // 바닥으로 인식하는 Normal 최솟값
+    [SerializeField] private float minMagnitudeSlideDir = 0.0001f;  // 슬라이드 처리 최소값
+    private bool isJump = false;                            // 점프 상태인지
+    private bool isStartJump = false;                       // 점프로 시작했는지 (실족사 트리거)
 
-    [SerializeField] private AnimationHandler anim;
+    [SerializeField] private AnimationHandler anim;     // 좌우 반전 처리용 SpriteRender 가지고 있는 객체
 
-    public event Action<Vector2> OnWallHitAction;
-    public event Action<bool, float> OnFall;
+    public event Action<Vector2> OnWallHitAction;       // 벽충돌 시 이벤트
+    public event Action<bool, float> OnFall;            // 떨어질 때 이벤트
 
-    [SerializeField] private bool isSlide = false;
-    [SerializeField] private int slideCheckCount = 10;
+    [SerializeField] private bool isSlide = false;      // 슬라이드 상태인지
+    [SerializeField] private int slideCheckCount = 10;  // 슬라이드 인식 보정 프레임
     [SerializeField] private int checkFrame = 0;
 
     protected virtual void Awake()
@@ -57,17 +58,21 @@ public class KinematicObj : MonoBehaviour
     {
         if (body != null)
         {
+            // 중력 처리
             if (gravityModifier > 0f)
             {
+                // 하강 시에는 gravityModifier 적용
                 if (velocity.y < 0)
                 {
                     velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
                 }
+                // 상승 시 점프 속력 감소 (gravityModifier와 무관하게)
                 else
                 {
                     velocity += Physics2D.gravity * Time.deltaTime;
                 }
             }
+            // 역중력도 가능은 함 (게임에선 안쓰는중)
             else
             {
                 velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
@@ -81,10 +86,12 @@ public class KinematicObj : MonoBehaviour
             var moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
             var move = moveAlongGround * deltaPos.x;
 
+            // X Axis Movement
             PerformMovement(move, false);
 
             move = Vector2.up * deltaPos.y;
 
+            // Y Axis Movement
             PerformMovement(move, true);
 
 
@@ -186,9 +193,9 @@ public class KinematicObj : MonoBehaviour
 
 
             // y 축 이동일 때만 추락 데이터 액션 실행
-            if (yMovement && !isGround)
+            if (yMovement && !isGround && !isJump)
             {
-                OnFall?.Invoke(isJump, moveDistance.y);
+                OnFall?.Invoke(isStartJump, moveDistance.y);
             }
         }
     }
@@ -230,6 +237,7 @@ public class KinematicObj : MonoBehaviour
         if (isGround || isForce)
         {
             isJump = true;
+            isStartJump = true;
             velocity.y = jumpForce;
         }
     }
