@@ -6,6 +6,9 @@ public class Trampolin : MonoBehaviour
 {
     [SerializeField] float jumpPower;
 
+    [SerializeField] AudioClip trampolinSFX;
+    [SerializeField] float trampolinVolume;
+
     bool isUpPos = false;
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -27,6 +30,7 @@ public class Trampolin : MonoBehaviour
             {
                 // 플레이어한테 점프 시키기
                 kineObj.Jump(jumpPower, true);
+                if (trampolinSFX != null) SoundManager.Instance.PlaySFX(trampolinSFX, trampolinVolume);
                 isUpPos = false;
             }
         }
