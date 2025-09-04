@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Lever : MonoBehaviour
+public class Lever : MonoBehaviour, IInteractable
 {
     [Header("문")]
     [SerializeField] Door door;
@@ -26,44 +26,28 @@ public class Lever : MonoBehaviour
         SetSizeCollider();
     }
 
-    private void Update()
-    {
-        if (!isOpened && canInteract)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                InteractLever();
-            }
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.CompareTag("Player"))
+
+        if(collision.gameObject.TryGetComponent(out Interaction interaction))
         {
+            Debug.Log("들어옴");
             canInteract = true;
+            interaction.curInteractable = this;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.CompareTag("Player"))
+
+        if (collision.gameObject.TryGetComponent(out Interaction interaction))
         {
-            canInteract = false;
+            Debug.Log("나감");
+            canInteract = true;
+            interaction.curInteractable = null;
         }
-    }
-
-    void InteractLever()
-    {
-        // 사운드 재생
-        if (leverSFX != null) SoundManager.Instance.PlaySFX(leverSFX, leverVolume);
-
-        door.Open();
-
-        isOpened = true;
-        anim.SetBool("IsOpened", true);
     }
 
     void SetSizeCollider()
@@ -82,5 +66,18 @@ public class Lever : MonoBehaviour
         {
             return;
         }
+    }
+
+    public void Interact()
+    {
+        if (isOpened || !canInteract) return;
+
+        // 사운드 재생
+        if (leverSFX != null) SoundManager.Instance.PlaySFX(leverSFX, leverVolume);
+
+        door.Open();
+
+        isOpened = true;
+        anim.SetBool("IsOpened", true);
     }
 }
