@@ -14,6 +14,7 @@ public class PlayerFallDownState : IPlayerState
         player.body.OnWallHitAction += OnWallHitEvent;
         player.body.OnFall += PlayerFallDataCount;
         player.anim.PlayAnimation(PlayerAnimationState.FallDown);
+        isFalling = false;
     }
 
     public void ExitState()
@@ -56,12 +57,25 @@ public class PlayerFallDownState : IPlayerState
         }
     }
 
+    private bool isFalling = false;
+
     public void PlayerFallDataCount(bool isStartJump, float yDistance)
     {
+        GameManager.Instance.gameData.fallDistance -= yDistance;
         if (!isStartJump)
         {
-            GameManager.Instance.gameData.fallDistance -= yDistance;
-            Debug.Log(yDistance);
+            if (!isFalling)
+            {
+                GameManager.Instance.gameData.deathByFootCount++;
+            }
         }
+        else
+        {
+            if (!isFalling)
+            {
+                GameManager.Instance.gameData.landingMissCount++;
+            }
+        }
+        isFalling = true;
     }
 }
