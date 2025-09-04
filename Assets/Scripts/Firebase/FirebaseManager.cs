@@ -75,7 +75,7 @@ public class FirebaseManager : Singleton<FirebaseManager>
         string json = $@"{{
             ""structuredQuery"": {{
                 ""from"": [{{ ""collectionId"": ""scores"" }}],
-                ""orderBy"": [{{ ""field"": {{ ""fieldPath"": ""time"" }}, ""direction"": ""DESCENDING"" }}],
+                ""orderBy"": [{{ ""field"": {{ ""fieldPath"": ""time"" }}, ""direction"": ""ASCENDING"" }}],
                 ""limit"": {limit}
             }}
         }}";
