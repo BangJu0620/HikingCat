@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2193883475678161621}
-  - component: {fileID: 2520573811945834793}
   - component: {fileID: 916910494460114364}
   m_Layer: 0
   m_Name: LeftDownDoor
@@ -34,18 +33,6 @@ Transform:
   - {fileID: 6294235207663460432}
   m_Father: {fileID: 7017943905485216579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2520573811945834793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68572146392848872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5529289bdc0796444b64bf8ca584f12d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &916910494460114364
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -184,6 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7017943905485216579}
+  - component: {fileID: 5122456452176237685}
   m_Layer: 0
   m_Name: Doors
   m_TagString: Untagged
@@ -208,6 +196,25 @@ Transform:
   - {fileID: 2193883475678161621}
   m_Father: {fileID: 7618206596960462479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5122456452176237685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871753088524602853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5529289bdc0796444b64bf8ca584f12d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightUpDoorObj: {fileID: 6276030776577250142}
+  leftDownDoorObj: {fileID: 68572146392848872}
+  isHorizontal: 0
+  distance: 0
+  speed: 0
+  doorSFX: {fileID: 0}
+  doorVolume: 1
 --- !u!1 &3857114433292787613
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +341,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 655298921537769158}
-  - component: {fileID: 4609749353250320031}
   - component: {fileID: 5329164936314472960}
   m_Layer: 0
   m_Name: RightUpDoor
@@ -359,18 +365,6 @@ Transform:
   - {fileID: 5229271642614785026}
   m_Father: {fileID: 7017943905485216579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4609749353250320031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6276030776577250142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5529289bdc0796444b64bf8ca584f12d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &5329164936314472960
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -427,6 +421,7 @@ GameObject:
   - component: {fileID: 1606739966384012516}
   - component: {fileID: 6779389339512343958}
   - component: {fileID: 848836949966597109}
+  - component: {fileID: 4460309937659965751}
   m_Layer: 10
   m_Name: Lever
   m_TagString: Untagged
@@ -462,13 +457,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5553b39ac7c0594ca6cdde6034be8ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightUpDoorObj: {fileID: 6276030776577250142}
-  leftDownDoorObj: {fileID: 68572146392848872}
-  isHorizontal: 1
-  distance: 10
-  speed: 3
+  door: {fileID: 5122456452176237685}
   isOpened: 0
   colliderSize: 3
+  anim: {fileID: 4460309937659965751}
+  leverSFX: {fileID: 8300000, guid: d5d4bb0771532a142abab291359f8407, type: 3}
+  leverVolume: 1
   canInteract: 0
 --- !u!61 &848836949966597109
 BoxCollider2D:
@@ -515,6 +509,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &4460309937659965751
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6467511232963445831}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 675e041a7f424164b8ebb7ff16cccefe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7787920849394821674
 GameObject:
   m_ObjectHideFlags: 0

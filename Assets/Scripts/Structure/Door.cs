@@ -4,9 +4,25 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public IEnumerator OpenDoor(float distance, float speed, int direction = 1, bool isHorizontal = false)   // 
+    [SerializeField] GameObject rightUpDoorObj;
+    [SerializeField] GameObject leftDownDoorObj;
+    [SerializeField] bool isHorizontal;
+    [SerializeField] float distance;
+    [SerializeField] float speed;
+    [SerializeField] AudioClip doorSFX;
+    [SerializeField] float doorVolume;
+
+    public void Open()
     {
-        Vector3 targetPos = transform.position;
+        StartCoroutine(OpenDoor(rightUpDoorObj, distance, speed, 1, isHorizontal));
+        StartCoroutine(OpenDoor(leftDownDoorObj, distance, speed, -1, isHorizontal));
+    }
+
+    public IEnumerator OpenDoor(GameObject door, float distance, float speed, int direction = 1, bool isHorizontal = false)   // 
+    {
+        if (doorSFX != null) SoundManager.Instance.PlaySFX(doorSFX, doorVolume);
+
+        Vector3 targetPos = door.transform.position;
         if (isHorizontal)
         {
             targetPos.x += distance * direction;
@@ -18,9 +34,9 @@ public class Door : MonoBehaviour
             Debug.Log(targetPos.y);
         }
 
-        while ((targetPos - transform.position).magnitude > 0)
+        while ((targetPos - door.transform.position).magnitude > 0)
         {
-            transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+            door.transform.position = Vector2.MoveTowards(door.transform.position, targetPos, speed * Time.deltaTime);
             yield return null;
         }
     }
