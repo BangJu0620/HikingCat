@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TitleSceneSoundController : MonoBehaviour
+public class SceneSoundController : MonoBehaviour
 {
     [SerializeField] private AudioClip bgm;
 

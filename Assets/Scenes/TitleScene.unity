@@ -210,7 +210,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 492906778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 386a273ffc0ef42c99944cdd4af92aed, type: 3}
+  m_Script: {fileID: 11500000, guid: 70cf16637a950443190ca6d450b76a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bgm: {fileID: 8300000, guid: 3f9e26d2ba007f844a7de25f67a106b9, type: 3}
@@ -496,7 +496,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 3887362482445847028}
+  - {fileID: 492906780}
   - {fileID: 66280739}
   - {fileID: 539959759}
-  - {fileID: 492906780}
   - {fileID: 535320085}
