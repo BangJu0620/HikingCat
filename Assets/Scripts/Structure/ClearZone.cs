@@ -8,7 +8,7 @@ public class ClearZone : MonoBehaviour
 
     bool isCleared;
 
-    void TestMethod()
+    void SceneLoad()
     {
         // 페이드아웃
         // 페이드 화면의 알파값을 조절해서 점점 안 보이게
@@ -28,7 +28,7 @@ public class ClearZone : MonoBehaviour
             Debug.Log("클리어");
 
             // 씬 이동하기
-            Invoke("TestMethod", delayTime);
+            Invoke("SceneLoad", delayTime);
         }
     }
 }
