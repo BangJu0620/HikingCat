@@ -11,13 +11,15 @@ public class PlayerFallDownState : IPlayerState
     }
     public void EnterState()
     {
-        player.body.OnWallHitAction += PlayWallHit;
+        player.body.OnWallHitAction += OnWallHitEvent;
+        player.body.OnFall += PlayerFallDataCount;
         player.anim.PlayAnimation(PlayerAnimationState.FallDown);
     }
 
     public void ExitState()
     {
-        player.body.OnWallHitAction -= PlayWallHit;
+        player.body.OnWallHitAction -= OnWallHitEvent;
+        player.body.OnFall -= PlayerFallDataCount;
     }
     public void ReEnterState() { }
 
@@ -33,11 +35,33 @@ public class PlayerFallDownState : IPlayerState
     }
 
     public void InputHandle(InputType type) { }
-    public void PlayWallHit()
+
+    public void OnWallHitEvent(Vector2 normalVec)
     {
+        // 벽에 어떻게든 충돌하면 소리 재생
         if (player.footStep != null)
         {
             player.footStep.PlayWallHitSFX();
+        }
+
+        // 아래쪽 벡터 충돌 (머리 위로 맞음)
+        if (normalVec.y < -0.05f)
+        {
+            GameManager.Instance.gameData.headHitCount++;
+        }
+        // 가로 벽 충돌 횟수
+        else if (Mathf.Abs(normalVec.x) >= 0.995f)
+        {
+            GameManager.Instance.gameData.verticalWallHitCount++;
+        }
+    }
+
+    public void PlayerFallDataCount(bool isStartJump, float yDistance)
+    {
+        if (!isStartJump)
+        {
+            GameManager.Instance.gameData.fallDistance -= yDistance;
+            Debug.Log(yDistance);
         }
     }
 }

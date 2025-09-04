@@ -1,18 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    [Serializable]
+    public struct GameData
     {
-        
+        public float gameTime;
+        public float fallDistance;
+        public int deathCount;
+
+        public int headHitCount;
+        public int verticalWallHitCount;
+        public int deathByFootCount;
+        public int landingMissCount;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameData gameData;
 }
