@@ -19,4 +19,25 @@ public class GameManager : Singleton<GameManager>
     }
 
     public GameData gameData;
+
+    public void GameStart()
+    {
+        gameData = new GameData();
+        ResumeGame();
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+    }
+
+    public void GameClear()
+    {
+
+    }
 }
