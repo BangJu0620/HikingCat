@@ -31,7 +31,8 @@ public class KinematicObj : MonoBehaviour
 
     [SerializeField] private AnimationHandler anim;
 
-    public event Action OnWallHitAction;
+    public event Action<Vector2> OnWallHitAction;
+    public event Action<bool, float> OnFall;
 
     [SerializeField] private bool isSlide = false;
     [SerializeField] private int slideCheckCount = 10;
@@ -122,62 +123,59 @@ public class KinematicObj : MonoBehaviour
                 }
 
                 var currentNormal = hitBuffer[i].normal;
-                if (yMovement)
+                // Check Bottom hit
+                if (currentNormal.y > minGroundY)
                 {
-                    // Check Bottom hit
-                    if (currentNormal.y > minGroundY)
+                    if (!isGround)
                     {
-                        if (!isGround)
-                        {
-                            velocity.x = 0;
-                        }
-                        isGround = true;
-                        isJump = false;
-                        velocity.y = 0f;
-                        groundNormal = currentNormal;
+                        velocity.x = 0;
                     }
-                    else
-                    {
-                        if (!isSlide)
-                        {
-                            Debug.Log("New Slide");
-                            OnWallHitAction?.Invoke();
-                        }
-                        isSlide = true;
-                        isGround = false;
-                        isJump = false;
-
-                        // 경사면 방향 계산
-                        Vector2 g = Physics2D.gravity.normalized;
-                        Vector2 slideDir = g - Vector2.Dot(g, currentNormal) * currentNormal;
-                        if (slideDir.sqrMagnitude < minMagnitudeSlideDir) slideDir = g;
-                        slideDir.Normalize();
-
-                        // 기존 속도 투영 + 중력 가속 추가
-                        float speedAlongSlide = Vector2.Dot(velocity, slideDir);
-                        Vector2 velocityAlongSlide = slideDir * speedAlongSlide;
-                        Vector2 gravityAlongSlide = Vector2.Dot(Physics2D.gravity * gravityModifier, slideDir) * slideDir;
-
-                        velocity = velocityAlongSlide + gravityAlongSlide * Time.fixedDeltaTime;
-
-                        // 경사 탈 때 좌우반전 적용
-                        bool isFlipX = velocity.x < 0;
-                        anim.FlipX(isFlipX);
-
-                        dir = velocity * Time.fixedDeltaTime;
-
-                        if (dir.y > 0)
-                        {
-                            Debug.Log($"{slideDir} is SlideDir");
-                        }
-                    }
-                    // Check Head hit
-                    if (currentNormal.y < -0.5f)
-                    {
-                        velocity.y = Mathf.Min(velocity.y, 0);
-                    }
-
+                    isGround = true;
+                    isJump = false;
+                    velocity.y = 0f;
+                    groundNormal = currentNormal;
                 }
+                else
+                {
+                    if (!isSlide)
+                    {
+                        Debug.Log("New Slide");
+                        OnWallHitAction?.Invoke(currentNormal);
+                    }
+                    isSlide = true;
+                    isGround = false;
+                    isJump = false;
+
+                    // 경사면 방향 계산
+                    Vector2 g = Physics2D.gravity.normalized;
+                    Vector2 slideDir = g - Vector2.Dot(g, currentNormal) * currentNormal;
+                    if (slideDir.sqrMagnitude < minMagnitudeSlideDir) slideDir = g;
+                    slideDir.Normalize();
+
+                    // 기존 속도 투영 + 중력 가속 추가
+                    float speedAlongSlide = Vector2.Dot(velocity, slideDir);
+                    Vector2 velocityAlongSlide = slideDir * speedAlongSlide;
+                    Vector2 gravityAlongSlide = Vector2.Dot(Physics2D.gravity * gravityModifier, slideDir) * slideDir;
+
+                    velocity = velocityAlongSlide + gravityAlongSlide * Time.fixedDeltaTime;
+
+                    // 경사 탈 때 좌우반전 적용
+                    bool isFlipX = velocity.x < 0;
+                    anim.FlipX(isFlipX);
+
+                    dir = velocity * Time.fixedDeltaTime;
+
+                    if (dir.y > 0)
+                    {
+                        Debug.Log($"{slideDir} is SlideDir");
+                    }
+                }
+                // Check Head hit
+                if (currentNormal.y < -0.5f)
+                {
+                    velocity.y = Mathf.Min(velocity.y, 0);
+                }
+
 
 
                 var modifiedDistance = hitBuffer[i].distance - shellRadius;
@@ -185,6 +183,13 @@ public class KinematicObj : MonoBehaviour
             }
             var moveDistance = dir.normalized * distance;
             body.position += moveDistance;
+
+
+            // y 축 이동일 때만 추락 데이터 액션 실행
+            if (yMovement && !isGround)
+            {
+                OnFall?.Invoke(isJump, moveDistance.y);
+            }
         }
     }
 
