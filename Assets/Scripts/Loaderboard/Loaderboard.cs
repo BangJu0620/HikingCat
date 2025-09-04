@@ -45,7 +45,7 @@ public class FirestoreResponse
     public FirestoreDocument[] documents;
 }
 
-public static class Loaderboard
+public static class Leaderboard
 {
     public static void CreateNewScore(string name, float time, out LeaderboardData outData)
     {
