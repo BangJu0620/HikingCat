@@ -1,70 +1,72 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Audio;
 
 public class OptionsPanel : MonoBehaviour
 {
     [SerializeField] private Button returnButton;
-    [SerializeField] private Slider BGM_Slider;
-    [SerializeField] private Slider SFX_Slider;
-    [SerializeField] private AudioMixer mixer;
-    private string bgmParameter = "Test_BGM";
-    private string sfxParameter = "Test_SFX";
-    [SerializeField] private GameObject bgmToggle;
-    [SerializeField] private GameObject sfxToggle;
-    private GameObject prev = null;
+    [SerializeField] private Slider bgmSlider;
+    [SerializeField] private Slider sfxSlider;
+    [SerializeField] private GameObject bgmMuteIcon;
+    [SerializeField] private GameObject sfxMuteIcon;
 
-    private PanelController pc;
+    private GameObject prev;
 
     private void Awake()
     {
-        pc = GetComponent<PanelController>();
-
-        if (returnButton)
-            returnButton.onClick.AddListener(OnClickReturn);
-
+        if (returnButton) returnButton.onClick.AddListener(OnClickReturn);
         prev = UIManager.Instance.previousPanel;
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        ApplyBGMVolume(BGM_Slider.value);
-        ApplySFXVolume(SFX_Slider.value);
+        var sm = SoundManager.Instance;
+        if (sm)
+        {
+            bgmSlider.SetValueWithoutNotify(DbToLinear(sm.bgmVolume));
+            sfxSlider.SetValueWithoutNotify(DbToLinear(sm.sfxVolume));
+        }
 
-        BGM_Slider.onValueChanged.AddListener(ApplyBGMVolume);
-        SFX_Slider.onValueChanged.AddListener(ApplySFXVolume);
+        UpdateMuteIcons();
+
+        bgmSlider.onValueChanged.AddListener(OnBgmChanged);
+        sfxSlider.onValueChanged.AddListener(OnSfxChanged);
+    }
+
+    private void OnDisable()
+    {
+        bgmSlider.onValueChanged.RemoveListener(OnBgmChanged);
+        sfxSlider.onValueChanged.RemoveListener(OnSfxChanged);
+    }
+
+    private void OnBgmChanged(float v01)
+    {
+        var sm = SoundManager.Instance;
+        if (sm) sm.SetVolume(v01, SoundManager.VolumeType.Music);
+        UpdateMuteIcons();
+    }
+
+    private void OnSfxChanged(float v01)
+    {
+        var sm = SoundManager.Instance;
+        if (sm) sm.SetVolume(v01, SoundManager.VolumeType.SFX);
+        UpdateMuteIcons();
+    }
+
+    private void UpdateMuteIcons()
+    {
+        if (bgmMuteIcon) bgmMuteIcon.SetActive(bgmSlider.value <= 0.0001f);
+        if (sfxMuteIcon) sfxMuteIcon.SetActive(sfxSlider.value <= 0.0001f);
     }
 
     public void OnClickReturn()
     {
         prev = UIManager.Instance.previousPanel;
         UIManager.Instance.Hide(gameObject);
-
-        if (prev)
-            UIManager.Instance.Show(prev);
+        if (prev) UIManager.Instance.Show(prev);
     }
-
-    private void OnDestroy()
+    
+    private static float DbToLinear(float db)
     {
-        if (BGM_Slider)
-            BGM_Slider.onValueChanged.RemoveListener(ApplyBGMVolume);
-        if (SFX_Slider)
-            SFX_Slider.onValueChanged.RemoveListener(ApplySFXVolume);
-    }
-
-    public void ApplyBGMVolume(float value)
-    {
-        float dB = (value <= 0.0001f) ? -80f : Mathf.Log10(value) * 20f;
-        mixer.SetFloat(bgmParameter, dB);
-
-        if (bgmToggle) bgmToggle.SetActive(value <= 0.0001f);
-    }
-
-    public void ApplySFXVolume(float value)
-    {
-        float dB = (value <= 0.0001f) ? -80f : Mathf.Log10(value) * 20f;
-        mixer.SetFloat(sfxParameter, dB);
-
-        if (sfxToggle) sfxToggle.SetActive(value <= 0.0001f);
+        return db <= -79.9f ? 0f : Mathf.Pow(10f, db / 20f);
     }
 }

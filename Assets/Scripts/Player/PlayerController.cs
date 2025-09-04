@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private StatusModel statusModel;
     [SerializeField] private PlayerStateMachine stateMachine;
     [SerializeField] private AnimationHandler anim;
+    [SerializeField] Transform spawnPos;
 
     public Vector2 CurMovementInput { get; private set; }
     public bool IsJumpKeyHeld { get; private set; }
@@ -64,6 +65,20 @@ public class PlayerController : MonoBehaviour
             stateMachine.OnInput(InputType.JumpReleased);
         }
     }
+
+    public void Spawn()
+    {
+        Debug.Log("Spawn");
+        // 페이드인 다 하고 이동시키기
+        gameObject.transform.position = spawnPos.position;
+    }
+
+    //public void Stop()
+    //{
+    //    CurMovementInput = Vector2.zero;
+    //    IsMoveKeyHeld = false;
+    //    stateMachine.OnInput(InputType.StopMove);
+    //}
 
     /*
         [Header("점프")]

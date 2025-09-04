@@ -33,7 +33,9 @@ public class StatusModel : MonoBehaviour
     public float DeAccelRate => 1f / deAccelTime;
 
     public Vector2 TargetVelocity {  get; private set; }
-    public Vector2 CurVelocity {  get; set; }
+    public Vector2 CurVelocity { get; set; }
+
+    public bool isLocked;
 
     public float GetJumpForce(float chargeRange)
     {
