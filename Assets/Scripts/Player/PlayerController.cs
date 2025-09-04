@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         stateMachine.UpdateState();
         statusModel.SetTargetVelocity(CurMovementInput);
 
-
+/*
         if (Input.GetKeyDown(KeyCode.G))
         {
             Leaderboard.CreateNewScore("test", Time.time, out LeaderboardData data);
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
             {
                 _ = Leaderboard.RegisterScore(data);
             }
-        }
+        }*/
     }
 
 
