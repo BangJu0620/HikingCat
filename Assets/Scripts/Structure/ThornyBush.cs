@@ -16,9 +16,9 @@ public class ThornyBush : MonoBehaviour
         //    //StartCoroutine(Damage());
         //    InvokeRepeating("TickThornDamage", 0, delay);
         //}
-        if(collision.gameObject.TryGetComponent(out Health health))
+        if(collision.gameObject.TryGetComponent(out PlayerController player))
         {
-            health.TakeDamage(damage, delay);
+            player.Spawn();
         }
     }
 
