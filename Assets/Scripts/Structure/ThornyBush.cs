@@ -8,46 +8,26 @@ public class ThornyBush : MonoBehaviour
     [SerializeField] float delay;
     [SerializeField] int damage;
 
+    Fade fade;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log($"{collision.gameObject.name} enter");
-        //if (collision.gameObject.CompareTag("Player"))
-        //{
-        //    //StartCoroutine(Damage());
-        //    InvokeRepeating("TickThornDamage", 0, delay);
-        //}
+
         if(collision.gameObject.TryGetComponent(out PlayerController player))
         {
-            player.Spawn();
+            StartCoroutine(ReSpawnPlayer(player, delay));
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    IEnumerator ReSpawnPlayer(PlayerController player, float delayTime)
     {
-        Debug.Log($"{collision.gameObject.name} exit");
-        //if (collision.gameObject.CompareTag("Player"))
-        //{
-        //    //StopAllCoroutines();
-        //    CancelInvoke("TickThornDamage");
-        //}
+        yield return StartCoroutine(fade.FadeOut());
+
+        player.Spawn();
+
+        yield return new WaitForSeconds(delayTime);
+
+        yield return StartCoroutine(fade.FadeIn());
     }
-
-    //IEnumerator Damage()
-    //{
-    //    while (true)
-    //    {
-    //        // 데미지 입히기
-
-    //        Debug.Log("데미지");
-
-    //        yield return new WaitForSeconds(delay);
-    //    }
-    //}
-
-    //void TickThornDamage()
-    //{
-    //    // 데미지 입히기
-
-    //    Debug.Log($"{damage} 데미지");
-    //}
 }
