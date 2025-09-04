@@ -6,28 +6,30 @@ using UnityEngine;
 public class ThornyBush : MonoBehaviour
 {
     [SerializeField] float delay;
-    [SerializeField] float damage;
-
-    // 플레이어 체력 어케 할건지 좀 봐야될듯
+    [SerializeField] int damage;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log($"{collision.gameObject.name} enter");
-        if (collision.gameObject.CompareTag("Player"))
+        //if (collision.gameObject.CompareTag("Player"))
+        //{
+        //    //StartCoroutine(Damage());
+        //    InvokeRepeating("TickThornDamage", 0, delay);
+        //}
+        if(collision.gameObject.TryGetComponent(out Health health))
         {
-            //StartCoroutine(Damage());
-            InvokeRepeating("TickThornDamage", 0, delay);
+            health.TakeDamage(damage, delay);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         Debug.Log($"{collision.gameObject.name} exit");
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            //StopAllCoroutines();
-            CancelInvoke("TickThornDamage");
-        }
+        //if (collision.gameObject.CompareTag("Player"))
+        //{
+        //    //StopAllCoroutines();
+        //    CancelInvoke("TickThornDamage");
+        //}
     }
 
     //IEnumerator Damage()
@@ -42,10 +44,10 @@ public class ThornyBush : MonoBehaviour
     //    }
     //}
 
-    void TickThornDamage()
-    {
-        // 데미지 입히기
+    //void TickThornDamage()
+    //{
+    //    // 데미지 입히기
 
-        Debug.Log($"{damage} 데미지");
-    }
+    //    Debug.Log($"{damage} 데미지");
+    //}
 }
