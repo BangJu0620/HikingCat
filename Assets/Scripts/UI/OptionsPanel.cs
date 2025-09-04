@@ -8,8 +8,8 @@ public class OptionsPanel : MonoBehaviour
     [SerializeField] private Slider BGM_Slider;
     [SerializeField] private Slider SFX_Slider;
     [SerializeField] private AudioMixer mixer;
-    private string bgmParameter = "Test_BGM";
-    private string sfxParameter = "Test_SFX";
+    private string bgmParameter = "BGM";
+    private string sfxParameter = "SFX";
     [SerializeField] private GameObject bgmToggle;
     [SerializeField] private GameObject sfxToggle;
     private GameObject prev = null;
