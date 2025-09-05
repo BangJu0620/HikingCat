@@ -693,11 +693,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3206048767007354567, guid: 2465c67354a3b0b4fb72ddf824ecc8ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.34
+      value: -1.83
       objectReference: {fileID: 0}
     - target: {fileID: 3206048767007354567, guid: 2465c67354a3b0b4fb72ddf824ecc8ed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 183.98
       objectReference: {fileID: 0}
     - target: {fileID: 3206048767007354567, guid: 2465c67354a3b0b4fb72ddf824ecc8ed, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12564,8 +12564,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 7482667652216324306, guid: 2a47d7305c2b1ea41b97804d6a5c5e7f, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -17853,7 +17853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4778679748658088526, guid: ba87e1e1aad14234b93c848c966001f8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
