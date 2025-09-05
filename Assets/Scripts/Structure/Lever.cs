@@ -45,7 +45,7 @@ public class Lever : MonoBehaviour, IInteractable
         if (collision.gameObject.TryGetComponent(out Interaction interaction))
         {
             Debug.Log("³ª°¨");
-            canInteract = true;
+            canInteract = false;
             interaction.curInteractable = null;
         }
     }

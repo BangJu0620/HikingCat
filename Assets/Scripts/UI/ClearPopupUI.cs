@@ -95,6 +95,14 @@ public class ClearPopupUI : MonoBehaviour
 
     private void OnClickExitButton()
     {
+        StartCoroutine(ClickExitButton());
 //        SceneLoader.Instance.LoadEndScrollScene();
+    }
+
+    IEnumerator ClickExitButton()
+    {
+        yield return StartCoroutine(UIManager.Instance.FadeOut());
+
+        // SceneLoader.Instance.load
     }
 }

@@ -12,8 +12,11 @@ public class Fade : MonoBehaviour
 
     private void Awake()
     {
+        UIManager.Instance.fade = this;
         panel = GetComponent<Image>();
-        StartCoroutine(FadeOutIn(2));
+        //StartCoroutine(FadeOutIn(2));
+        panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, 1);
+        StartCoroutine(FadeIn());
     }
 
     public IEnumerator FadeIn()
@@ -38,19 +41,19 @@ public class Fade : MonoBehaviour
         }
     }
 
-    public IEnumerator FadeOutIn(float delayTime)
-    {
-        yield return StartCoroutine(FadeOut());
+    //public IEnumerator FadeOutIn(float delayTime)
+    //{
+    //    yield return StartCoroutine(FadeOut());
 
-        Test();
+    //    Test();
 
-        yield return new WaitForSeconds(delayTime);
+    //    yield return new WaitForSeconds(delayTime);
 
-        yield return StartCoroutine(FadeIn());
-    }
+    //    yield return StartCoroutine(FadeIn());
+    //}
 
-    void Test()
-    {
-        Debug.Log("test");
-    }
+    //void Test()
+    //{
+    //    Debug.Log("test");
+    //}
 }
