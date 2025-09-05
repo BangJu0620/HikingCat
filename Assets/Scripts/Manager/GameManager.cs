@@ -35,6 +35,7 @@ public class GameManager : Singleton<GameManager>
         gameData = new GameData();
         gameTime = 0;
         ResumeGame();
+
     }
 
     private void Update()

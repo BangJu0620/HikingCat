@@ -67,12 +67,19 @@ public class SoundManager : Singleton<SoundManager>
 
     #region BGM
 
+    public void PlayBGM(string path, bool loop = true, float fadeDuration = 1f)
+    {
+        AudioClip clip = Resources.Load<AudioClip>(path);
+        PlayBGM(clip, loop, fadeDuration);
+    }
+
     public void PlayBGM(AudioClip newClip, bool loop = true, float fadeDuration = 1f)
     {
         if (bgmSource == null)
         {
             var a = Resources.Load<GameObject>(BGMPrefPath);
             bgmSource = Instantiate(a, transform).GetComponent<AudioSource>();
+            DontDestroyOnLoad(bgmSource.gameObject);
         }
 
         if (bgmSource.clip == newClip) return;

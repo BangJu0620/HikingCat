@@ -9,7 +9,7 @@ public class RankingPanel : MonoBehaviour
     [SerializeField] private GameObject titlePanel;
     [SerializeField] private Transform content;
     [SerializeField] private GameObject entry;
-
+    [SerializeField] GameObject loadingIcon;
     private void Awake()
     {
         if (returnButton)
@@ -26,8 +26,9 @@ public class RankingPanel : MonoBehaviour
         var task = Leaderboard.LoadLeaderboards(10);
 
         // (선택) Loading Ui 
-
+        loadingIcon.gameObject.SetActive(true);
         List<LeaderboardData> list = await task;
+        loadingIcon.gameObject.SetActive(false);
 
         if (list.Count <= 0)
             Debug.Log("No Data.");
