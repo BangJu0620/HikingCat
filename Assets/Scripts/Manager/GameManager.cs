@@ -17,9 +17,18 @@ public class GameManager : Singleton<GameManager>
         public int deathByFootCount;
         public int landingMissCount;
     }
+    
+    public enum GameState
+    {
+        Title, OnLoad, InGame, UI
+    }
 
     public GameData gameData;
+//    public GameState gameState = GameState.Title;
     public float gameTime;
+
+    public Player player;
+    public Level level;
 
     public void GameStart()
     {
@@ -30,17 +39,20 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        if (Time.timeScale != 0)
+//        if (gameState == GameState.InGame)
+        if(Time.timeScale != 0)
             gameTime += Time.deltaTime;
     }
 
     public void PauseGame()
     {
+//        gameState = GameState.UI;
         Time.timeScale = 0f;
     }
 
     public void ResumeGame()
     {
+//        gameState = GameState.InGame;
         Time.timeScale = 1f;
     }
 

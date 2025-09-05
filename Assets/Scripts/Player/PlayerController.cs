@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public bool IsJumpKeyHeld { get; private set; }
     public bool IsMoveKeyHeld { get; private set; }
 
+    public bool isLocked;
+
     private void Update()
     {
         // 상태 업데이트만 호출
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
         if (context.phase == InputActionPhase.Performed)
         {
+            if (isLocked) return;
             CurMovementInput = input;
             IsMoveKeyHeld = true;
             stateMachine.OnInput(InputType.Move);

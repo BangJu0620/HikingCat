@@ -8,49 +8,39 @@ public class Fade : MonoBehaviour
 {
     [SerializeField] float fadeSpeed;
 
+    Canvas canvas;
     Image panel;
 
     private void Awake()
     {
+        UIManager.Instance.fade = this;
         panel = GetComponent<Image>();
-        StartCoroutine(FadeOutIn(2));
+        canvas = GetComponent<Canvas>();
+        Debug.Log("A");
+//        if(GameManager.Instance.gameState != GameManager.GameState.Title)
+            panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, 1);
+        StartCoroutine(FadeIn());
     }
 
     public IEnumerator FadeIn()
     {
         while(panel.color.a > 0)
         {
-            //Debug.Log(panel.color.a);
             panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, Mathf.MoveTowards(panel.color.a, 0, Time.deltaTime * fadeSpeed));
             yield return null;
         }
-        //panel.gameObject.SetActive(false);
+        canvas.sortingOrder = 0;
+        panel.raycastTarget = false;
     }
 
     public IEnumerator FadeOut()
     {
-        //panel.gameObject.SetActive(true);
+        panel.raycastTarget = false;
+        canvas.sortingOrder = 200;
         while (panel.color.a < 1)
         {
-            //Debug.Log(panel.color.a);
             panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, Mathf.MoveTowards(panel.color.a, 1, Time.deltaTime * fadeSpeed));
             yield return null;
         }
-    }
-
-    public IEnumerator FadeOutIn(float delayTime)
-    {
-        yield return StartCoroutine(FadeOut());
-
-        Test();
-
-        yield return new WaitForSeconds(delayTime);
-
-        yield return StartCoroutine(FadeIn());
-    }
-
-    void Test()
-    {
-        Debug.Log("test");
     }
 }

@@ -48,5 +48,7 @@ public class Player : MonoBehaviour
             if(footStep == null) 
                 footStep = gameObject.AddComponent<FootStep>();
         }
+
+        GameManager.Instance.player = this;
     }
 }

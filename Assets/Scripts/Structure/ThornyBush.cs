@@ -8,7 +8,7 @@ public class ThornyBush : MonoBehaviour
     [SerializeField] float delay;
     [SerializeField] int damage;
 
-    [SerializeField] Fade fade;
+    //[SerializeField] Fade fade;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,12 +22,14 @@ public class ThornyBush : MonoBehaviour
 
     IEnumerator ReSpawnPlayer(PlayerController player, float delayTime)
     {
-        yield return StartCoroutine(fade.FadeOut());
+        player.isLocked = true;
+        yield return StartCoroutine(UIManager.Instance.FadeOut());
 
         player.Spawn();
 
         yield return new WaitForSeconds(delayTime);
 
-        yield return StartCoroutine(fade.FadeIn());
+        yield return StartCoroutine(UIManager.Instance.FadeIn());
+        player.isLocked = false;
     }
 }
