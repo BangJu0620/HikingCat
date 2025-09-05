@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class RankingPanel : MonoBehaviour
 {
@@ -35,8 +36,8 @@ public class RankingPanel : MonoBehaviour
         {
             LeaderboardData data = list[i];
             var entryData = Instantiate(entry, content);
-            var text = entryData.GetComponent<Text>();
-            text.text = $"{data.username} - {data.timeText}";
+            var text = entryData.GetComponent<TMP_Text>();
+            text.text = $"{data.username} {data.timeText}";
         }
     }
 

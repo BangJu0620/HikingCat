@@ -5,21 +5,6 @@ using System.Collections;
 
 public class SceneLoader : Singleton<SceneLoader>
 {
-    // public event Action<Scene> OnSceneLoaded;
-    // public string CurrentSceneName => SceneManager.GetActiveScene().name;
-    // public bool IsEndingScene() => CurrentSceneName == "EndingScene";
-
-    // protected override void Initialize()
-    // {
-    //     base.Initialize();
-    //     DontDestroyOnLoad(gameObject);
-    //     SceneManager.sceneLoaded += HandleSceneLoaded;
-    // }
-
-    // private void OnDestroy() => SceneManager.sceneLoaded -= HandleSceneLoaded;
-
-    // private void HandleSceneLoaded(Scene scene, LoadSceneMode mode) => OnSceneLoaded?.Invoke(scene);
-
     public void LoadTitleScene()
     {
         StartCoroutine(SceneLoad("TitleScene", GameManager.Instance.ResumeGame));
@@ -37,7 +22,7 @@ public class SceneLoader : Singleton<SceneLoader>
     {
         var asyncOper = SceneManager.LoadSceneAsync(sceneName);
 
-        // ·Îµå µÉ ¶§±îÁö ´ë±â
+        // ï¿½Îµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         while (!asyncOper.isDone)
         {
             yield return null;
