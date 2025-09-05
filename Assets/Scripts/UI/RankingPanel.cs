@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,27 +15,28 @@ public class RankingPanel : MonoBehaviour
             returnButton.onClick.AddListener(OnClickReturnButton);
     }
 
-    private void OnEnable()
-    {
-        StartCoroutine(LoadAndDisplay());
-    }
-
-    private IEnumerator LoadAndDisplay()
+    private void OnEnable() => LoadAndDisplay();
+    
+    public async void LoadAndDisplay()
     {
         foreach (Transform e in content)
             Destroy(e.gameObject);
-            
-        var task = Leaderboard.LoadLeaderboards(10);
-        yield return new WaitUntil(() => task.IsCompleted);
 
-        List<LeaderboardData> list = task.Result;
+        var task = Leaderboard.LoadLeaderboards(10);
+
+        // (선택) Loading Ui 
+
+        List<LeaderboardData> list = await task;
+
+        if (list.Count <= 0)
+            Debug.Log("No Data.");
 
         for (int i = 0; i < list.Count; i++)
         {
             LeaderboardData data = list[i];
             var entryData = Instantiate(entry, content);
             var text = entryData.GetComponent<Text>();
-            text.text = $"{i + 1}. {data.name} - {data.timeText}";
+            text.text = $"{data.name} - {data.timeText}";
         }
     }
 

@@ -14,6 +14,7 @@ public class TitlePanel : MonoBehaviour
     [SerializeField] private GameObject rankingPanel;
 
     private PanelController pc;
+    private RankingPanel rp;
 
     private void Awake()
     {
