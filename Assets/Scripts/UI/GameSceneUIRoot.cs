@@ -15,9 +15,17 @@ public class GameSceneUIRoot : MonoBehaviour
             pauseButton.onClick.AddListener(OnClickPause);
     }
 
-    private void OnClickPause()
+    public void OnClickPause()
     {
-        UIManager.Instance.Show(pausePanel);
-        GameManager.Instance.PauseGame();
+        if (pausePanel.activeSelf)
+        {
+            UIManager.Instance.Hide(pausePanel);
+            GameManager.Instance.ResumeGame();
+        }
+        else
+        {
+            UIManager.Instance.Show(pausePanel);
+            GameManager.Instance.PauseGame();
+        }  
     }
 }
