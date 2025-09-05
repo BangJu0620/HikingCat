@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    protected IPlayerState currentState;
-    private readonly Dictionary<Type, IPlayerState> states = new();
+    protected IState currentState;
+    private readonly Dictionary<Type, IState> states = new();
     [SerializeField] private string CurrentState;   // State 디버깅용
 
-    public void AddState(IPlayerState state) 
+    public void AddState(IState state) 
         => states[state.GetType()] = state;
 
-    public void ChangeState<T>() where T : IPlayerState
+    public void ChangeState<T>() where T : IState
     {
         // 현재 상태가 null인 경우
         if (currentState == null)
