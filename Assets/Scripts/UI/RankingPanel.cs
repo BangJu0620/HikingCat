@@ -7,11 +7,37 @@ public class RankingPanel : MonoBehaviour
 {
     [SerializeField] private Button returnButton;
     [SerializeField] private GameObject titlePanel;
+    [SerializeField] private Transform content;
+    [SerializeField] private GameObject entry;
 
     private void Awake()
     {
         if (returnButton)
             returnButton.onClick.AddListener(OnClickReturnButton);
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(LoadAndDisplay());
+    }
+
+    private IEnumerator LoadAndDisplay()
+    {
+        foreach (Transform e in content)
+            Destroy(e.gameObject);
+            
+        var task = Leaderboard.LoadLeaderboards(10);
+        yield return new WaitUntil(() => task.IsCompleted);
+
+        List<LeaderboardData> list = task.Result;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            LeaderboardData data = list[i];
+            var entryData = Instantiate(entry, content);
+            var text = entryData.GetComponent<Text>();
+            text.text = $"{i + 1}. {data.name} - {data.timeText}";
+        }
     }
 
     private void OnClickReturnButton()

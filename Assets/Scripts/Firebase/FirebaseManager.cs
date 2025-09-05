@@ -50,19 +50,19 @@ public class FirebaseManager : Singleton<FirebaseManager>
 
             var operation = req.SendWebRequest();
 
-            // ¿äÃ» ¿Ï·á ±îÁö ´ë±â
+            // ï¿½ï¿½Ã» ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             while (!operation.isDone) await Task.Yield();
 
             if (req.result == UnityWebRequest.Result.Success)
             {
-                // µî·Ï ¼º°ø ½Ã Ã³¸® Ãß°¡
-                Debug.Log("µ¥ÀÌÅÍ Àü¼Û ¼º°ø");
+                // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ß°ï¿½
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
                 return true;
             }
             else
             {
-                // µî·Ï ½ÇÆÐ ½Ã Ã³¸® Ãß°¡
-                Debug.Log("µ¥ÀÌÅÍ Àü¼Û ½ÇÆÐ");
+                // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ß°ï¿½
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
                 return false;
             }
         }
@@ -79,7 +79,7 @@ public class FirebaseManager : Singleton<FirebaseManager>
                 ""limit"": {limit}
             }}
         }}";
-
+    
         using (UnityWebRequest req = new UnityWebRequest(url, "POST"))
         {
             byte[] rawData = Encoding.UTF8.GetBytes(json);
@@ -89,12 +89,12 @@ public class FirebaseManager : Singleton<FirebaseManager>
 
             var operation = req.SendWebRequest();
 
-            // ¿äÃ» ¿Ï·á ±îÁö ´ë±â
+            // ï¿½ï¿½Ã» ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             while (!operation.isDone) await Task.Yield();
 
-            if(req.result == UnityWebRequest.Result.Success)
+            if (req.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("·Îµå ¼º°ø : " + req.downloadHandler.text);
+                Debug.Log("ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ : " + req.downloadHandler.text);
                 string result = req.downloadHandler.text;
 
                 FirestoreResponse response = JsonUtility.FromJson<FirestoreResponse>(result);
@@ -116,7 +116,7 @@ public class FirebaseManager : Singleton<FirebaseManager>
             }
             else
             {
-                Debug.LogError("Äõ¸® ½ÇÆÐ: " + req.error + "\n" + req.downloadHandler.text);
+                Debug.LogError("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " + req.error + "\n" + req.downloadHandler.text);
                 return null;
             }
         }
