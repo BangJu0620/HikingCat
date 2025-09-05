@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 [RequireComponent(typeof(ScrollRect))]
 public class EndingCreditScrollView : MonoBehaviour
@@ -13,6 +14,16 @@ public class EndingCreditScrollView : MonoBehaviour
     private RectTransform content;
     private RectTransform viewport;
 
+    [SerializeField] private TMP_Text FallCntTxt;
+    [SerializeField] private TMP_Text headHitCnt;
+    [SerializeField] private TMP_Text verticalWallHitCnt;
+    [SerializeField] private TMP_Text deathbyfootCnt;
+    [SerializeField] private TMP_Text missLandingCnt;
+
+    [SerializeField] private TMP_Text FallDistance;
+    [SerializeField] private TMP_Text GameTime;
+
+
     private void Awake()
     {
         sr = GetComponent<ScrollRect>();
@@ -21,6 +32,23 @@ public class EndingCreditScrollView : MonoBehaviour
 
         sr.inertia = false;
         sr.enabled = false;
+
+        var data = GameManager.Instance.gameData;
+
+        FallCntTxt.text = $"¶³¾îÁø È½¼ö : {data.fallCount} È¸";
+        headHitCnt.text = $"¸Ó¸® Äô ÇÑ È½¼ö : {data.headHitCount} È¸";
+        verticalWallHitCnt.text = $"º®¿¡ ¸öÅë¹ÚÄ¡±â »ç¿ë È½¼ö : {data.verticalWallHitCount} È¸";
+        deathbyfootCnt.text = $"¾ÆÀÌÄí ¹ßÀÌ ¹Ì²ô·¯Áø È½¼ö : {data.deathByFootCount} È¸";
+        missLandingCnt.text = $"Àß¸ø ÂøÁöÇÑ È½¼ö : {data.landingMissCount} È¸";
+
+        FallDistance.text = $"³«ÇÏÇÑ °Å¸® : {data.fallDistance}m";
+
+
+        int hour = (int)GameManager.Instance.gameTime / 3600;
+        int minute = (int)(GameManager.Instance.gameTime % 3600) / 60;
+        float second = GameManager.Instance.gameTime % 60;
+        GameTime.text = $"¼Ò¿ä ½Ã°£ : {hour.ToString("D2")} : {minute.ToString("D2")} : {second.ToString("00.00")}";
+
     }
 
     private void OnEnable()

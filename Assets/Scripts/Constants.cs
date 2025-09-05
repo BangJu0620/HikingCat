@@ -8,7 +8,7 @@ public static class Constants
     {
         public readonly static string TitleBGM = "Sounds/A Meeting of Minds";
         public readonly static string InGameBGM;
-        public readonly static string EndBGM;
+        public readonly static string EndBGM = "Sounds/Ending_BGM";
 
     }
 }

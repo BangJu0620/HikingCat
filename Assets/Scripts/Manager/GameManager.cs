@@ -16,6 +16,8 @@ public class GameManager : Singleton<GameManager>
         public int verticalWallHitCount;
         public int deathByFootCount;
         public int landingMissCount;
+
+        public int fallCount => headHitCount + verticalWallHitCount + landingMissCount + deathByFootCount;
     }
     
     public enum GameState

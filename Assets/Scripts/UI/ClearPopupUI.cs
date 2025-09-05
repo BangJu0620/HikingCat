@@ -29,7 +29,7 @@ public class ClearPopupUI : MonoBehaviour
     {
         data = new LeaderboardData();
         data.time = GameManager.Instance.gameTime;
-
+        GameManager.Instance.gameData.gameTime = data.time;
         // 등록된 키가 있으면 해당 이름 자동 입력
         if (PlayerPrefs.HasKey(NameKey))
         {
@@ -107,4 +107,5 @@ public class ClearPopupUI : MonoBehaviour
 
         SceneLoader.Instance.LoadEndingScene();
     }
+
 }
