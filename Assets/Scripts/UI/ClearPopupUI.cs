@@ -28,8 +28,8 @@ public class ClearPopupUI : MonoBehaviour
         // 등록된 키가 있으면 해당 이름 자동 입력
         if (PlayerPrefs.HasKey(NameKey))
         {
-            data.name = PlayerPrefs.GetString(NameKey);
-            nameInputField.text = data.name;
+            data.username = PlayerPrefs.GetString(NameKey);
+            nameInputField.text = data.username;
         }
         if (LoadingUIObj != null)
         {
@@ -54,15 +54,15 @@ public class ClearPopupUI : MonoBehaviour
 
     private void OnChangeInputField(string text)
     {
-        data.name = text;
+        data.username = text;
     }
 
     private async void RegisterClearData()
     {
-        if (data.name == "") return;
+        if (data.username == "") return;
 
         // 등록 시 이름 저장
-        PlayerPrefs.SetString(NameKey, data.name);
+        PlayerPrefs.SetString(NameKey, data.username);
 
 
         if (LoadingUIObj != null)

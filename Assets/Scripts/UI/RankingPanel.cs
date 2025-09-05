@@ -36,7 +36,7 @@ public class RankingPanel : MonoBehaviour
             LeaderboardData data = list[i];
             var entryData = Instantiate(entry, content);
             var text = entryData.GetComponent<Text>();
-            text.text = $"{data.name} - {data.timeText}";
+            text.text = $"{data.username} - {data.timeText}";
         }
     }
 

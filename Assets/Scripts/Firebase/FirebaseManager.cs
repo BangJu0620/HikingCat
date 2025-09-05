@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +37,7 @@ public class FirebaseManager : Singleton<FirebaseManager>
 
         string json = $@"{{
             ""fields"": {{
-                ""username"": {{""stringValue"": ""{data.name}""}},
+                ""username"": {{""stringValue"": ""{data.username}""}},
                 ""time"": {{""doubleValue"": ""{data.time}""}}
             }}
         }}";
@@ -94,23 +95,22 @@ public class FirebaseManager : Singleton<FirebaseManager>
 
             if (req.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("�ε� ���� : " + req.downloadHandler.text);
+                Debug.Log("데이터 : " + req.downloadHandler.text);
                 string result = req.downloadHandler.text;
 
-                FirestoreResponse response = JsonUtility.FromJson<FirestoreResponse>(result);
+                FirestoreDocumentWrapper[] response = JsonHelper.FromJson<FirestoreDocumentWrapper>(result);
                 List<LeaderboardData> datas = new List<LeaderboardData>();
 
-                if (response.documents != null)
+                foreach (var wrapper in response)
                 {
-                    foreach (var doc in response.documents)
+                    if (wrapper.document?.fields == null) continue;
+
+                    LeaderboardData data = new LeaderboardData
                     {
-                        LeaderboardData data = new LeaderboardData
-                        {
-                            name = doc.fields.name?.stringValue,
-                            time = float.TryParse(doc.fields.time?.doubleValue, out var val) ? val : 0f
-                        };
-                        datas.Add(data);
-                    }
+                        username = wrapper.document.fields.username?.stringValue,
+                        time = float.TryParse(wrapper.document.fields.time?.doubleValue, out var val) ? val : 0f
+                    };
+                    datas.Add(data);
                 }
                 return datas;
             }
@@ -120,5 +120,21 @@ public class FirebaseManager : Singleton<FirebaseManager>
                 return null;
             }
         }
+    }
+}
+
+public static class JsonHelper
+{
+    public static T[] FromJson<T>(string json)
+    {
+        string newJson = "{ \"array\": " + json + "}";
+        Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(newJson);
+        return wrapper.array;
+    }
+
+    [Serializable]
+    private class Wrapper<T>
+    {
+        public T[] array;
     }
 }
