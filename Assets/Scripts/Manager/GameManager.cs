@@ -30,11 +30,18 @@ public class GameManager : Singleton<GameManager>
     public Player player;
     public Level level;
 
+    protected override void Initialize()
+    {
+        base.Initialize();
+        SoundManager.Instance.PlayBGM(Constants.BGMPath.TitleBGM);
+    }
+
     public void GameStart()
     {
         gameData = new GameData();
         gameTime = 0;
         ResumeGame();
+        SoundManager.Instance.PlayBGM(Constants.BGMPath.TitleBGM);
 
     }
 
