@@ -9,9 +9,12 @@ public class TitlePanel : MonoBehaviour
     [SerializeField] private Button startButton;
     [SerializeField] private Button quitButton;
     [SerializeField] private Button optionsButton;
+    [SerializeField] private Button rankingButton;
     [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject rankingPanel;
 
     private PanelController pc;
+    private RankingPanel rp;
 
     private void Awake()
     {
@@ -23,6 +26,8 @@ public class TitlePanel : MonoBehaviour
             quitButton.onClick.AddListener(OnClickQuit);
         if (optionsButton)
             optionsButton.onClick.AddListener(OnClickOptions);
+        if (rankingButton)
+            rankingButton.onClick.AddListener(OnClickRanking);
     }
 
     public void OnClickStart()
@@ -40,5 +45,11 @@ public class TitlePanel : MonoBehaviour
         UIManager.Instance.previousPanel = gameObject;
         UIManager.Instance.Hide(gameObject);
         UIManager.Instance.Show(optionsPanel);
+    }
+
+    public void OnClickRanking()
+    {
+        UIManager.Instance.Hide(gameObject);
+        UIManager.Instance.Show(rankingPanel);
     }
 }

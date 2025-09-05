@@ -8,7 +8,7 @@ using UnityEngine;
 [Serializable]
 public class LeaderboardData
 {
-    public string name;
+    public string username;
     public float time;
     public string timeText => TimeToText();
 
@@ -32,7 +32,7 @@ public class LeaderboardData
 
     public LeaderboardData(string name, float time)
     {
-        this.name = name;
+        this.username = name;
         this.time = time;
     }
 }
@@ -48,7 +48,7 @@ public class FirestoreValue
 [Serializable]
 public class FirestoreFields
 {
-    public FirestoreValue name;
+    public FirestoreValue username;
     public FirestoreValue time;
 }
 
@@ -60,10 +60,11 @@ public class FirestoreDocument
 }
 
 [Serializable]
-public class FirestoreResponse
+public class FirestoreDocumentWrapper
 {
-    public FirestoreDocument[] documents;
+    public FirestoreDocument document;
 }
+
 
 public static class Leaderboard
 {

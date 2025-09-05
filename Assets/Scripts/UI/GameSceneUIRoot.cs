@@ -19,7 +19,7 @@ public class GameSceneUIRoot : MonoBehaviour
     private void OnClickPause()
     {
         UIManager.Instance.Show(pausePanel);
-        //GameManager.Instance.PauseGame();
+        GameManager.Instance.PauseGame();
     }
 
     //public void ClearGame()
