@@ -10,6 +10,18 @@ public class RestartButton : MonoBehaviour
     private void Awake()
     {
         if (restartButton)
-            restartButton.onClick.AddListener(() => SceneLoader.Instance.LoadTitleScene());
+            restartButton.onClick.AddListener(() => OnClickRestartButton());
+    }
+
+    IEnumerator Restart()
+    {
+        yield return UIManager.Instance.FadeOut();
+
+        SceneLoader.Instance.LoadTitleScene();
+    }
+
+    void OnClickRestartButton()
+    {
+        StartCoroutine(Restart());
     }
 }
