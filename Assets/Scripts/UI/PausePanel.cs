@@ -34,7 +34,7 @@ public class PausePanel : MonoBehaviour
     public void OnClickReturnToGame()
     {
         UIManager.Instance.Hide(gameObject);
-        Time.timeScale = 1f;
+        GameManager.Instance.ResumeGame();
     }
 
     public void OnClickReturnToTitle()

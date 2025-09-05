@@ -18,7 +18,6 @@ public class GameSceneUIRoot : MonoBehaviour
     private void OnClickPause()
     {
         UIManager.Instance.Show(pausePanel);
-        Time.timeScale = 0f;
-        //GameManager.Instance.PauseGame();
+        GameManager.Instance.PauseGame();
     }
 }
