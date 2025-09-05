@@ -26,7 +26,7 @@ public class ClearZone : MonoBehaviour
 
             // ÆË¾÷ ¶ç¿ì±â
             Debug.Log("Å¬¸®¾î");
-
+            UIManager.Instance.SetClear();
 
             // ¾À ÀÌµ¿ÇÏ±â
             Invoke("SceneLoad", delayTime);

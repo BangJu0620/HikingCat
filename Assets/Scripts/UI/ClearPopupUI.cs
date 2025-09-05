@@ -19,6 +19,11 @@ public class ClearPopupUI : MonoBehaviour
 
     private readonly string NameKey = "PlayerName";
 
+    private void Awake()
+    {
+        UIManager.Instance.clearPopup = this;
+        this.gameObject.SetActive(false);
+    }
 
     private void OnEnable()
     {
@@ -45,6 +50,10 @@ public class ClearPopupUI : MonoBehaviour
         nameInputField.onValueChanged.RemoveAllListeners();
         nameInputField.onValueChanged.AddListener(OnChangeInputField);
 
+        int hour = (int)GameManager.Instance.gameTime / 3600;
+        int minute = (int)(GameManager.Instance.gameTime % 3600) / 60;
+        float second = GameManager.Instance.gameTime % 60;
+        TimeText.text = $"소요 시간 : <color=red>{hour.ToString("D2")} : {minute.ToString("D2")} : {second.ToString("00.00")}";
     }
 
     private void OnDisable()
