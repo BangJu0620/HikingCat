@@ -8,7 +8,7 @@ public class ThornyBush : MonoBehaviour
     [SerializeField] float delay;
     [SerializeField] int damage;
 
-    [SerializeField] Fade fade;
+    //[SerializeField] Fade fade;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
