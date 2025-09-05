@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIManager : Singleton<UIManager>
 {
     public Fade fade;
+    public ClearPopupUI clearPopup;
 
     public GameObject previousPanel = null;
 
@@ -20,5 +21,10 @@ public class UIManager : Singleton<UIManager>
     public IEnumerator FadeOut()
     {
         yield return StartCoroutine(fade.FadeOut());
+    }
+
+    public void SetClear()
+    {
+        clearPopup.gameObject.SetActive(true);
     }
 }

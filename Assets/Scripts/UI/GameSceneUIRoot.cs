@@ -8,7 +8,6 @@ public class GameSceneUIRoot : MonoBehaviour
     [SerializeField] private Button pauseButton;
     [SerializeField] private GameObject optionsPanel;
     [SerializeField] private GameObject pausePanel;
-    //[SerializeField] private GameObject clearPanel;
 
     private void Awake()
     {
@@ -21,9 +20,4 @@ public class GameSceneUIRoot : MonoBehaviour
         UIManager.Instance.Show(pausePanel);
         GameManager.Instance.PauseGame();
     }
-
-    //public void ClearGame()
-    //{
-    //    UIManager.Instance.Show(clearPanel);
-    //}
 }
