@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0) return;
+
         // 상태 업데이트만 호출
         stateMachine.UpdateState();
         statusModel.SetTargetVelocity(CurMovementInput);
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0) return;
         Vector2 input = context.ReadValue<Vector2>();
 
         if (context.phase == InputActionPhase.Performed)
@@ -57,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0) return;
         if (context.phase == InputActionPhase.Started)
         {
             IsJumpKeyHeld = true;

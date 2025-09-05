@@ -56,6 +56,7 @@ public class KinematicObj : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        if (Time.timeScale == 0) return;
         if (body != null)
         {
             // 중력 처리
