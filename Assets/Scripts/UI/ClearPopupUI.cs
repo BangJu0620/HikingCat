@@ -113,6 +113,6 @@ public class ClearPopupUI : MonoBehaviour
         yield return StartCoroutine(UIManager.Instance.FadeOut());
 
         Debug.Log("Exit");
-        // SceneLoader.Instance.LoadEndScrollScene();
+        SceneLoader.Instance.LoadEndingScene();
     }
 }
