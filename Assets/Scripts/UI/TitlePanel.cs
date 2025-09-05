@@ -33,6 +33,13 @@ public class TitlePanel : MonoBehaviour
     public void OnClickStart()
     {
         UIManager.Instance.PlayClickSFX();
+        StartCoroutine(ClickStartButton());
+    }
+
+    IEnumerator ClickStartButton()
+    {
+        yield return StartCoroutine(UIManager.Instance.FadeOut());
+
         SceneLoader.Instance.LoadGameScene();
     }
 
