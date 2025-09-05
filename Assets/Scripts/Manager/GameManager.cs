@@ -19,11 +19,19 @@ public class GameManager : Singleton<GameManager>
     }
 
     public GameData gameData;
+    public float gameTime;
 
     public void GameStart()
     {
         gameData = new GameData();
+        gameTime = 0;
         ResumeGame();
+    }
+
+    private void Update()
+    {
+        if (Time.timeScale != 0)
+            gameTime += Time.deltaTime;
     }
 
     public void PauseGame()

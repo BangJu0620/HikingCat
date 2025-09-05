@@ -380,8 +380,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -649461874, guid: 14ad08035c9d8c049a4e1a853555698c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -418,7 +418,7 @@ Transform:
   m_GameObject: {fileID: 2871753088524602853}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.5, y: 9, z: 0}
+  m_LocalPosition: {x: 8.5, y: 8.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -440,9 +440,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightUpDoorObj: {fileID: 6276030776577250142}
   leftDownDoorObj: {fileID: 68572146392848872}
-  isHorizontal: 0
-  distance: 0
-  speed: 0
+  isHorizontal: 1
+  distance: 10
+  speed: 3
   doorSFX: {fileID: 0}
   doorVolume: 1
 --- !u!156049354 &4190655041417180393
@@ -808,7 +808,7 @@ GameObject:
   - component: {fileID: 1606739966384012516}
   - component: {fileID: 6779389339512343958}
   - component: {fileID: 848836949966597109}
-  - component: {fileID: 4460309937659965751}
+  - component: {fileID: 2742548010409145999}
   m_Layer: 10
   m_Name: Lever
   m_TagString: Untagged
@@ -847,7 +847,7 @@ MonoBehaviour:
   door: {fileID: 5122456452176237685}
   isOpened: 0
   colliderSize: 3
-  anim: {fileID: 4460309937659965751}
+  anim: {fileID: 2742548010409145999}
   leverSFX: {fileID: 8300000, guid: d5d4bb0771532a142abab291359f8407, type: 3}
   leverVolume: 1
   canInteract: 0
@@ -896,7 +896,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!95 &4460309937659965751
+--- !u!95 &2742548010409145999
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
