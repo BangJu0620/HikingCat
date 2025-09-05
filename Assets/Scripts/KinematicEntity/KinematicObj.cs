@@ -147,7 +147,6 @@ public class KinematicObj : MonoBehaviour
                 {
                     if (!isSlide)
                     {
-                        Debug.Log("New Slide");
                         OnWallHitAction?.Invoke(currentNormal);
                     }
                     isSlide = true;
@@ -172,11 +171,6 @@ public class KinematicObj : MonoBehaviour
                     anim.FlipX(isFlipX);
 
                     dir = velocity * Time.fixedDeltaTime;
-
-                    if (dir.y > 0)
-                    {
-                        Debug.Log($"{slideDir} is SlideDir");
-                    }
                 }
                 // Check Head hit
                 if (currentNormal.y < -0.5f)

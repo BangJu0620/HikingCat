@@ -24,7 +24,6 @@ public class Trampolin : MonoBehaviour
         {
             foreach (var contact in collision.contacts)
             {
-                Debug.Log(Vector2.Dot(contact.normal, Vector2.up));
                 // 어디에서 충돌했는지 검사하기, 옆면이면 무시하기
                 if (Vector2.Dot(contact.normal, Vector2.up) < -0.9f)
                 {

@@ -59,7 +59,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        Debug.Log("종료!");
         // 애플리케이션 종료 플래그를 true로 설정
         IsApplicationQuit = true;
     }

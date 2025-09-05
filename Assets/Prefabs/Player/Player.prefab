@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 5101239168673301979}
   - component: {fileID: 4622821057288376153}
   - component: {fileID: 8926387606870491996}
+  - component: {fileID: 1049396177826437231}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -204,6 +205,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 886a4886-5d26-4230-8cf2-3c90cc4996fd
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1049396177826437231}
+        m_TargetAssemblyTypeName: Interaction, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b7a47d9d-871e-4b59-88fa-2d876b33af4d
+    m_ActionName: Player/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -402,3 +419,15 @@ MonoBehaviour:
   FootStepVolume: 0.4
   JumpStepVolume: 0.4
   WallHitVolume: 0.4
+--- !u!114 &1049396177826437231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7599048612935595644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a059da542120e34da1a79b12dcf1c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

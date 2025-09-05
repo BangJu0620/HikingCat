@@ -57,13 +57,11 @@ public class FirebaseManager : Singleton<FirebaseManager>
             if (req.result == UnityWebRequest.Result.Success)
             {
                 // ��� ���� �� ó�� �߰�
-                Debug.Log("������ ���� ����");
                 return true;
             }
             else
             {
                 // ��� ���� �� ó�� �߰�
-                Debug.Log("������ ���� ����");
                 return false;
             }
         }
@@ -95,7 +93,6 @@ public class FirebaseManager : Singleton<FirebaseManager>
 
             if (req.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("데이터 : " + req.downloadHandler.text);
                 string result = req.downloadHandler.text;
 
                 FirestoreDocumentWrapper[] response = JsonHelper.FromJson<FirestoreDocumentWrapper>(result);

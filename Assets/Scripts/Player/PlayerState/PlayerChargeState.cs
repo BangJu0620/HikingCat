@@ -23,7 +23,6 @@ public class PlayerChargeState : IPlayerState
     {
         float heldTime = Time.time - jumpChargeT;
         float chargeRange = Mathf.Clamp01(heldTime / player.status.MaxChargeTime);
-        Debug.Log(chargeRange);
         player.body.Jump(player.status.GetJumpForce(chargeRange));
         
         if(player.footStep != null)

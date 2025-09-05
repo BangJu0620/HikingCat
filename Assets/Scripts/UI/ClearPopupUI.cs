@@ -94,25 +94,17 @@ public class ClearPopupUI : MonoBehaviour
             TMP_Text buttonText = RegisterButton.GetComponentInChildren<TextMeshProUGUI>();
             buttonText.text = "등록 완료";
         }
-        else
-        {
-
-        }
-        // 완료되면 나가기 알아서? 아니면 주석처리 하면 됨
-        ExitButton.onClick.Invoke();
     }
 
     private void OnClickExitButton()
     {
         StartCoroutine(ClickExitButton());
-//        SceneLoader.Instance.LoadEndScrollScene();
     }
 
     IEnumerator ClickExitButton()
     {
         yield return StartCoroutine(UIManager.Instance.FadeOut());
 
-        Debug.Log("Exit");
         SceneLoader.Instance.LoadEndingScene();
     }
 }

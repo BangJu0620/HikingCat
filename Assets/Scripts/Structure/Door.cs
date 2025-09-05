@@ -18,7 +18,7 @@ public class Door : MonoBehaviour
         StartCoroutine(OpenDoor(leftDownDoorObj, distance, speed, -1, isHorizontal));
     }
 
-    public IEnumerator OpenDoor(GameObject door, float distance, float speed, int direction = 1, bool isHorizontal = false)   // 
+    public IEnumerator OpenDoor(GameObject door, float distance, float speed, int direction = 1, bool isHorizontal = false)
     {
         if (doorSFX != null) SoundManager.Instance.PlaySFX(doorSFX, doorVolume);
 
@@ -26,12 +26,10 @@ public class Door : MonoBehaviour
         if (isHorizontal)
         {
             targetPos.x += distance * direction;
-            Debug.Log(targetPos.x);
         }
         else
         {
             targetPos.y += distance * direction;
-            Debug.Log(targetPos.y);
         }
 
         while ((targetPos - door.transform.position).magnitude > 0)

@@ -16,9 +16,7 @@ public class Fade : MonoBehaviour
         UIManager.Instance.fade = this;
         panel = GetComponent<Image>();
         canvas = GetComponent<Canvas>();
-        Debug.Log("A");
-//        if(GameManager.Instance.gameState != GameManager.GameState.Title)
-            panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, 1);
+        panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, 1);
         StartCoroutine(FadeIn());
     }
 

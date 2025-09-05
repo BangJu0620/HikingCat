@@ -16,7 +16,6 @@ public class Interaction : MonoBehaviour
     {
         if(context.phase == InputActionPhase.Started)
         {
-            Debug.Log("상호작용");
             curInteractable.Interact();
         }
     }

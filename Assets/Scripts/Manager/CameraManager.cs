@@ -53,19 +53,13 @@ public class CameraManager : Singleton<CameraManager>
             Vector3 targetPos = new Vector3(player.position.x, player.position.y, mainCamera.transform.position.z);
 
             float minX = background.bounds.min.x + cameraWidth;
-            //            Debug.Log("minX" + minX);
             float maxX = background.bounds.max.x - cameraWidth;
-            //            Debug.Log("maxX" + maxX);
             float minY = background.bounds.min.y + cameraHeight;
-            //            Debug.Log("minY" + minY);
             float maxY = background.bounds.max.y - cameraHeight;
-            //            Debug.Log("maxY" + maxY);
             //Limit camera movement range
 
             targetPos.x = Mathf.Clamp(targetPos.x, minX, maxX);
-            //            Debug.Log("targetPos.x : " + targetPos.x);
             targetPos.y = Mathf.Clamp(targetPos.y, minY, maxY);
-            //            Debug.Log("targetPos.y : " + targetPos.y);
             
             return targetPos;
         }

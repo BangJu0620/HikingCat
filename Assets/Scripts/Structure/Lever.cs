@@ -28,11 +28,8 @@ public class Lever : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
-
         if(collision.gameObject.TryGetComponent(out Interaction interaction))
         {
-            Debug.Log("µé¾î¿È");
             canInteract = true;
             interaction.curInteractable = this;
         }
@@ -40,11 +37,8 @@ public class Lever : MonoBehaviour, IInteractable
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
-
         if (collision.gameObject.TryGetComponent(out Interaction interaction))
         {
-            Debug.Log("³ª°¨");
             canInteract = false;
             interaction.curInteractable = null;
         }
