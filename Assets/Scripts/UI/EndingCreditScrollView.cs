@@ -44,9 +44,9 @@ public class EndingCreditScrollView : MonoBehaviour
         FallDistance.text = $"낙하한 거리 : {data.fallDistance}m";
 
 
-        int hour = (int)GameManager.Instance.gameTime / 3600;
-        int minute = (int)(GameManager.Instance.gameTime % 3600) / 60;
-        float second = GameManager.Instance.gameTime % 60;
+        int hour = (int)data.gameTime / 3600;
+        int minute = (int)(data.gameTime % 3600) / 60;
+        float second = data.gameTime % 60;
         GameTime.text = $"소요 시간 : {hour.ToString("D2")} : {minute.ToString("D2")} : {second.ToString("00.00")}";
 
     }
