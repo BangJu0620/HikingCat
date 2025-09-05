@@ -18,6 +18,7 @@ public class GameSceneUIRoot : MonoBehaviour
 
     public void OnClickPause()
     {
+        if (!UIManager.Instance.isFadeComplete) return;
         Debug.Log("Test");
         UIManager.Instance.PlayClickSFX();
         if (pausePanel.activeSelf)

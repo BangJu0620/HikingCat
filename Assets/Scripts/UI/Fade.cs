@@ -22,6 +22,7 @@ public class Fade : MonoBehaviour
 
     public IEnumerator FadeIn()
     {
+        UIManager.Instance.isFadeComplete = false;
         while(panel.color.a > 0)
         {
             panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, Mathf.MoveTowards(panel.color.a, 0, Time.deltaTime * fadeSpeed));
@@ -29,10 +30,12 @@ public class Fade : MonoBehaviour
         }
         canvas.sortingOrder = 0;
         panel.raycastTarget = false;
+        UIManager.Instance.isFadeComplete = true;
     }
 
     public IEnumerator FadeOut()
     {
+        UIManager.Instance.isFadeComplete = false;
         panel.raycastTarget = false;
         canvas.sortingOrder = 200;
         while (panel.color.a < 1)
@@ -40,5 +43,6 @@ public class Fade : MonoBehaviour
             panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, Mathf.MoveTowards(panel.color.a, 1, Time.deltaTime * fadeSpeed));
             yield return null;
         }
+        UIManager.Instance.isFadeComplete = true;
     }
 }

@@ -12,6 +12,8 @@ public class UIManager : Singleton<UIManager>
 
     public AudioClip soundSFX;
 
+    public bool isFadeComplete;
+
     public void Show(GameObject panel) => panel?.SetActive(true);
     public void Hide(GameObject panel) => panel?.SetActive(false);
 
