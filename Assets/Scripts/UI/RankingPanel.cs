@@ -44,6 +44,7 @@ public class RankingPanel : MonoBehaviour
 
     private void OnClickReturnButton()
     {
+        UIManager.Instance.PlayClickSFX();
         UIManager.Instance.Hide(gameObject);
         UIManager.Instance.Show(titlePanel);
     }

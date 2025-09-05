@@ -68,6 +68,7 @@ public class ClearPopupUI : MonoBehaviour
 
     private async void RegisterClearData()
     {
+        UIManager.Instance.PlayClickSFX();
         if (data.username == "") return;
 
         // 등록 시 이름 저장
@@ -98,6 +99,7 @@ public class ClearPopupUI : MonoBehaviour
 
     private void OnClickExitButton()
     {
+        UIManager.Instance.PlayClickSFX();
         StartCoroutine(ClickExitButton());
     }
 

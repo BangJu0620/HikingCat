@@ -26,6 +26,7 @@ public class PausePanel : MonoBehaviour
 
     public void OnClickOptions()
     {
+        UIManager.Instance.PlayClickSFX();
         UIManager.Instance.previousPanel = gameObject;
         UIManager.Instance.Hide(gameObject);
         UIManager.Instance.Show(optionsPanel);
@@ -33,12 +34,14 @@ public class PausePanel : MonoBehaviour
 
     public void OnClickReturnToGame()
     {
+        UIManager.Instance.PlayClickSFX();
         UIManager.Instance.Hide(gameObject);
         GameManager.Instance.ResumeGame();
     }
 
     public void OnClickReturnToTitle()
     {
+        UIManager.Instance.PlayClickSFX();
         SceneLoader.Instance.LoadTitleScene();
     }
 }

@@ -32,16 +32,19 @@ public class TitlePanel : MonoBehaviour
 
     public void OnClickStart()
     {
+        UIManager.Instance.PlayClickSFX();
         SceneLoader.Instance.LoadGameScene();
     }
 
     public void OnClickQuit()
     {
+        UIManager.Instance.PlayClickSFX();
         SceneLoader.Instance.QuitGame();
     }
 
     public void OnClickOptions()
     {
+        UIManager.Instance.PlayClickSFX();
         UIManager.Instance.previousPanel = gameObject;
         UIManager.Instance.Hide(gameObject);
         UIManager.Instance.Show(optionsPanel);
@@ -49,6 +52,7 @@ public class TitlePanel : MonoBehaviour
 
     public void OnClickRanking()
     {
+        UIManager.Instance.PlayClickSFX();
         UIManager.Instance.Hide(gameObject);
         UIManager.Instance.Show(rankingPanel);
     }

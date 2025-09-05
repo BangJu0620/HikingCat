@@ -10,5 +10,6 @@ public static class Constants
         public readonly static string InGameBGM = "Sounds/02 First steps on ancient grounds";
         public readonly static string EndBGM = "Sounds/Ending_BGM";
 
+        public readonly static string ClickSFX = "Sounds/MouseClick";
     }
 }

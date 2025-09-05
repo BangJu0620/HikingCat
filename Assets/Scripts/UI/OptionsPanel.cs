@@ -60,6 +60,7 @@ public class OptionsPanel : MonoBehaviour
 
     public void OnClickReturn()
     {
+        UIManager.Instance.PlayClickSFX();
         prev = UIManager.Instance.previousPanel;
         UIManager.Instance.Hide(gameObject);
         if (prev) UIManager.Instance.Show(prev);

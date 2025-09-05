@@ -22,6 +22,7 @@ public class RestartButton : MonoBehaviour
 
     void OnClickRestartButton()
     {
+        UIManager.Instance.PlayClickSFX();
         StartCoroutine(Restart());
     }
 }

@@ -17,6 +17,7 @@ public class GameSceneUIRoot : MonoBehaviour
 
     public void OnClickPause()
     {
+        UIManager.Instance.PlayClickSFX();
         if (pausePanel.activeSelf)
         {
             UIManager.Instance.Hide(pausePanel);
