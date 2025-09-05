@@ -33,7 +33,8 @@ public class PausePanel : MonoBehaviour
 
     public void OnClickReturnToGame()
     {
-        SceneLoader.Instance.LoadGameScene();
+        UIManager.Instance.Hide(gameObject);
+        Time.timeScale = 1f;
     }
 
     public void OnClickReturnToTitle()
