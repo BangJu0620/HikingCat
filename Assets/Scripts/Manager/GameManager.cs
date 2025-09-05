@@ -42,7 +42,7 @@ public class GameManager : Singleton<GameManager>
         gameData = new GameData();
         gameTime = 0;
         ResumeGame();
-        SoundManager.Instance.PlayBGM(Constants.BGMPath.TitleBGM);
+        SoundManager.Instance.PlayBGM(Constants.BGMPath.InGameBGM);
 
     }
 
@@ -60,5 +60,16 @@ public class GameManager : Singleton<GameManager>
     public void ResumeGame()
     {
         Time.timeScale = 1f;
+    }
+
+    public void GoToTitle()
+    {
+        Initialize();
+        ResumeGame();
+    }
+
+    public void EndSceneEnter()
+    {
+        SoundManager.Instance.PlayBGM(Constants.BGMPath.EndBGM);
     }
 }

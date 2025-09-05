@@ -7,7 +7,7 @@ public class SceneLoader : Singleton<SceneLoader>
 {
     public void LoadTitleScene()
     {
-        StartCoroutine(SceneLoad("TitleScene", GameManager.Instance.ResumeGame));
+        StartCoroutine(SceneLoad("TitleScene", GameManager.Instance.GoToTitle));
     }
 
     public void LoadGameScene() 
@@ -15,7 +15,10 @@ public class SceneLoader : Singleton<SceneLoader>
         StartCoroutine(SceneLoad("InGameScene", GameManager.Instance.GameStart));
     }
 
-    public void LoadEndingScene() => SceneManager.LoadScene("EndingScene");
+    public void LoadEndingScene()
+    {
+        StartCoroutine(SceneLoad("EndingScene", GameManager.Instance.EndSceneEnter));
+    }
     public void QuitGame() => Application.Quit();
 
     private IEnumerator SceneLoad(string sceneName, Action callbackAction = null)
