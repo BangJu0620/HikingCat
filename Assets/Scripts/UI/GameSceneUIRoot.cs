@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class GameSceneUIRoot : MonoBehaviour
@@ -17,6 +18,7 @@ public class GameSceneUIRoot : MonoBehaviour
 
     public void OnClickPause()
     {
+        Debug.Log("Test");
         UIManager.Instance.PlayClickSFX();
         if (pausePanel.activeSelf)
         {
@@ -28,5 +30,13 @@ public class GameSceneUIRoot : MonoBehaviour
             UIManager.Instance.Show(pausePanel);
             GameManager.Instance.PauseGame();
         }  
+    }
+
+    public void OnClickEscape(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            OnClickPause();
+        }
     }
 }

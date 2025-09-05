@@ -79,7 +79,6 @@ public class SoundManager : Singleton<SoundManager>
         {
             var a = Resources.Load<GameObject>(BGMPrefPath);
             bgmSource = Instantiate(a, transform).GetComponent<AudioSource>();
-            DontDestroyOnLoad(bgmSource.gameObject);
         }
 
         if (bgmSource.clip == newClip) return;

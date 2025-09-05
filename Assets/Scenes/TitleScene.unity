@@ -478,7 +478,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: TitleSceneUIRoot
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1638602732928701103, guid: f94a64549ef83454cb31bc8a71bc01bc, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6981937428380727638, guid: f94a64549ef83454cb31bc8a71bc01bc, type: 3}
+    - {fileID: 4482207856319455703, guid: f94a64549ef83454cb31bc8a71bc01bc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

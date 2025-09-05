@@ -221,6 +221,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b7a47d9d-871e-4b59-88fa-2d876b33af4d
     m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6fd3a7d4-2152-459f-b74d-534322cb0901
+    m_ActionName: Player/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -276,7 +280,6 @@ MonoBehaviour:
   statusModel: {fileID: 1443219296310361708}
   stateMachine: {fileID: 1503380182416139665}
   anim: {fileID: 5101239168673301979}
-  spawnPos: {fileID: 0}
   isLocked: 0
 --- !u!114 &1443219296310361708
 MonoBehaviour:
